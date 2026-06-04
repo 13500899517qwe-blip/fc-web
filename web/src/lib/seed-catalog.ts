@@ -6,8 +6,17 @@ import { locales, type AppLocale } from '@/i18n/routing'
 import { translateText } from '@/lib/translate'
 import { company } from '@/lib/company'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const materialsDir = path.resolve(__dirname, '../../seed-data')
+function resolveMaterialsDir(): string {
+  const candidates = [
+    path.join(process.cwd(), 'seed-data'),
+    path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../seed-data'),
+    path.resolve(process.cwd(), '../seed-data'),
+  ]
+  for (const dir of candidates) {
+    if (fs.existsSync(path.join(dir, '分类树.txt'))) return dir
+  }
+  return candidates[0]
+}
 
 function slugify(input: string): string {
   return input
@@ -43,6 +52,10 @@ export async function runSeedCatalog(
   payload: Payload,
   options: { reset?: boolean; seedProducts?: boolean } = {},
 ) {
+  const materialsDir = resolveMaterialsDir()
+  const treeFile = path.join(materialsDir, '分类树.txt')
+  const treeFileFound = fs.existsSync(treeFile)
+
   const cleared = options.reset ? await clearCatalog(payload) : undefined
 
   const email = process.env.SEED_ADMIN_EMAIL || 'admin@example.com'
@@ -62,11 +75,11 @@ export async function runSeedCatalog(
     adminCreated = true
   }
 
-  const treePath = path.join(materialsDir, '分类树.txt')
   const categoryMap = new Map<string, number>()
   let categoriesUpserted = 0
 
-  if (fs.existsSync(treePath)) {
+  if (treeFileFound) {
+    const treePath = treeFile
     const lines = fs.readFileSync(treePath, 'utf-8').split('\n')
     let parentL1: number | null = null
     let parentL2: number | null = null
@@ -279,5 +292,7 @@ export async function runSeedCatalog(
     categoriesUpserted,
     productsImported,
     productsSkipped: !options.seedProducts,
+    materialsDir,
+    treeFileFound,
   }
 }
