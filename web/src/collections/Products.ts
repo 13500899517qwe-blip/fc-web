@@ -6,6 +6,8 @@ export const Products: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['sku', 'title', 'slug', 'updatedAt'],
+    description:
+      'Import from 网站资料/产品主数据.csv when ready (pnpm seed with SEED_PRODUCTS=true), or add manually. Attach images via Media → stored on Vercel Blob in production.',
   },
   fields: [
     {

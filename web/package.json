@@ -11,12 +11,14 @@
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed.ts",
+    "seed:reset": "cross-env NODE_OPTIONS=--no-deprecation SEED_RESET=true tsx scripts/seed.ts",
     "translate:ui": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/translate-ui-messages.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.85.0",
     "@payloadcms/next": "^3.85.0",
     "@payloadcms/richtext-lexical": "^3.85.0",
+    "@payloadcms/storage-vercel-blob": "^3.85.0",
     "@payloadcms/ui": "^3.85.0",
     "clsx": "^2.1.1",
     "cross-env": "^10.1.0",
@@ -34,6 +36,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@next/env": "^16.2.7",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

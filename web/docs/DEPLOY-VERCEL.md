@@ -6,8 +6,10 @@
 
 ## 1. Neon（Postgres — 必需）
 
-1. [https://neon.tech](https://neon.tech) 新建 Project  
-2. 复制 Connection string（`?sslmode=require`）→ 用作 `DATABASE_URI`
+**在 Vercel 项目里创建**（不要单独去 neon.tech，会提示用 Vercel 集成）：
+
+1. 项目 → **Storage** → **Create** → **Neon Postgres** → Free  
+2. 连接后自动有 `DATABASE_URI`（复制到本地 `.env` 用于 `pnpm seed`）
 
 ## 2. Vercel
 
@@ -53,4 +55,5 @@ NEXT_PUBLIC_SERVER_URL=https://<project>.vercel.app pnpm exec tsx scripts/verify
 | 产品为空 | `pnpm seed` + 检查 `DATABASE_URI` |
 | 图片上传后消失 | 转正接 Vercel Blob，见 PRODUCTION-CHECKLIST |
 
-Vercel **Storage → Neon** 可自动注入 `DATABASE_URI`。
+| 打开网站是 401 | 关闭 Deployment Protection / SSO，见 [DEPLOY-TROUBLESHOOTING.md](../../docs/DEPLOY-TROUBLESHOOTING.md) |
+| seed Parent 报错 | 已修复：分类 ID 用 number，拉最新代码 |

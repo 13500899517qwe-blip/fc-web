@@ -4,9 +4,9 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: lumadrive
-      POSTGRES_PASSWORD: lumadrive
-      POSTGRES_DB: lumadrive
+      POSTGRES_USER: fengcheng
+      POSTGRES_PASSWORD: fengcheng
+      POSTGRES_DB: fengcheng
     volumes:
       - pgdata:/var/lib/postgresql/data
 

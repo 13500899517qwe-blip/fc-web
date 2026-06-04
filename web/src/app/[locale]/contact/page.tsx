@@ -3,9 +3,11 @@
 import { useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { TurnstileWidget } from '@/components/inquiry/TurnstileWidget'
+import { company } from '@/lib/company'
 
 export default function ContactPage() {
   const t = useTranslations('contact')
+  const ti = useTranslations('inquiry')
   const locale = useLocale()
   const [token, setToken] = useState<string | null>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -43,11 +45,20 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-xl px-4 py-12">
       <h1 className="text-3xl font-bold">{t('title')}</h1>
-      <p className="mt-2 text-zinc-600">sales@example.com · WhatsApp available</p>
+      <p className="mt-2 text-zinc-600">{company.legalName}</p>
+      <p className="mt-1 text-sm text-zinc-500">{t('location')}</p>
+      <a
+        href={company.alibabaStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 inline-block text-sm text-blue-700 hover:underline"
+      >
+        {t('alibaba')}
+      </a>
       <form onSubmit={submit} className="mt-8 space-y-4">
         <input
           required
-          placeholder="Name"
+          placeholder={ti('name')}
           className="w-full rounded border px-3 py-2"
           value={form.name}
           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
@@ -55,14 +66,14 @@ export default function ContactPage() {
         <input
           required
           type="email"
-          placeholder="Email"
+          placeholder={ti('email')}
           className="w-full rounded border px-3 py-2"
           value={form.email}
           onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
         />
         <textarea
           required
-          placeholder="Message"
+          placeholder={ti('message')}
           className="w-full rounded border px-3 py-2"
           rows={5}
           value={form.message}

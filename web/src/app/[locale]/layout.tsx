@@ -4,10 +4,12 @@ import { notFound } from 'next/navigation'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { hasLocale } from 'next-intl'
 import { routing, rtlLocales, type AppLocale } from '@/i18n/routing'
+import { TopBar } from '@/components/layout/TopBar'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton'
 import { InquiryBasketProvider } from '@/components/inquiry/InquiryBasketProvider'
+import { getCategoryTree } from '@/lib/catalog-queries'
 import '../globals.css'
 
 const geistSans = Geist({
@@ -37,6 +39,14 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   setRequestLocale(locale)
+
+  let categoryTree: Awaited<ReturnType<typeof getCategoryTree>> = []
+  try {
+    categoryTree = await getCategoryTree(locale as AppLocale)
+  } catch {
+    /* DB unavailable at build */
+  }
+
   const messages = await getMessages()
   const dir = rtlLocales.includes(locale as AppLocale) ? 'rtl' : 'ltr'
 
@@ -49,9 +59,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
         <NextIntlClientProvider messages={messages}>
           <InquiryBasketProvider>
-            <SiteHeader />
+            <TopBar />
+            <SiteHeader categoryTree={categoryTree} />
             <main className="flex-1">{children}</main>
-            <SiteFooter />
+            <SiteFooter categoryTree={categoryTree} />
             <WhatsAppButton />
           </InquiryBasketProvider>
         </NextIntlClientProvider>

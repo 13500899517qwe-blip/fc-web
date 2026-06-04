@@ -23,7 +23,7 @@ type InquiryBasketContextValue = {
   clear: () => void
 }
 
-const STORAGE_KEY = 'lumadrive-inquiry-basket'
+const STORAGE_KEY = 'fengcheng-inquiry-basket'
 
 const InquiryBasketContext = createContext<InquiryBasketContextValue | null>(null)
 

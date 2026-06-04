@@ -1,7 +1,11 @@
 {
   "meta": {
-    "siteName": "LumaDrive LED",
-    "tagline": "Automotive LED lighting for global B2B buyers"
+    "siteName": "Fengcheng Auto Parts",
+    "tagline": "Custom auto body parts & modified lights — Changzhou Fengcheng"
+  },
+  "topbar": {
+    "oemOdm": "OEM · ODM · Custom Manufacturer",
+    "alibaba": "Alibaba Store"
   },
   "nav": {
     "home": "Home",
@@ -9,53 +13,102 @@
     "about": "About",
     "faq": "FAQ",
     "contact": "Contact",
-    "inquiry": "Inquiry Basket"
+    "inquiry": "Inquiry Basket",
+    "byCategory": "By category",
+    "byVehicle": "By vehicle",
+    "viewAllProducts": "View all products →"
+  },
+  "catalog": {
+    "byCategory": "By category",
+    "byVehicle": "By vehicle",
+    "allProducts": "All products",
+    "allBrands": "All brands",
+    "searchPlaceholder": "Search SKU, part number, or product name…",
+    "quoteNote": "Prices on request — add to inquiry basket for a formal quote.",
+    "resultsCount": "{count} products",
+    "filteredBy": "Vehicle",
+    "categorySlot": "Catalog slot ready — import products from Alibaba when available.",
+    "browseCategory": "Browse",
+    "prev": "Previous",
+    "next": "Next",
+    "emptyTitle": "Catalog being prepared",
+    "emptySearchTitle": "No products match your search",
+    "emptyCategoryTitle": "No products in {category} yet",
+    "emptyBody": "We are aligning our online catalog with our Alibaba store. Categories and inquiry flow are live; product listings will be imported soon.",
+    "emptyHint": "Admin: upload products in Payload → Products, attach images in Media (Vercel Blob), or import CSV from 网站资料/产品主数据.csv when ready.",
+    "requestQuote": "Request quote",
+    "viewAlibaba": "View Alibaba store",
+    "imagePending": "Product photo will be added after Alibaba import.",
+    "alibabaMore": "More fitments on"
   },
   "home": {
-    "heroTitle": "LED Headlights & Mounting Solutions",
-    "heroSubtitle": "OEM/ODM ready. Request a quote for your market.",
-    "ctaProducts": "Browse Products",
-    "ctaContact": "Contact Sales",
-    "featured": "Featured Products",
-    "advantagesTitle": "Why work with us",
-    "advantage1": "Stable quality control",
-    "advantage2": "Fast sampling support",
-    "advantage3": "Flexible OEM/ODM"
+    "heroTitle": "Auto Body Parts & Modified Lights",
+    "heroSubtitle": "Changzhou Fengcheng — custom manufacturer for Toyota, Jeep, Nissan, Isuzu and more. OEM/ODM · drawing-based customization.",
+    "ctaProducts": "Browse catalog",
+    "ctaContact": "Contact us",
+    "ctaInquiry": "Inquiry basket",
+    "featured": "Featured products",
+    "featuredSub": "Slots ready for your Alibaba listings — empty until import.",
+    "trustTitle": "Verified supplier highlights",
+    "trustFloorspace": "23,575㎡ factory",
+    "trustRating": "4.8/5 store rating",
+    "trustDelivery": "92.9% on-time delivery",
+    "trustResponse": "≤4h response time",
+    "shopByCategory": "Shop by category",
+    "shopByCategorySub": "Same structure as our Alibaba store — body parts & modified lights.",
+    "viewAll": "View all",
+    "advantagesTitle": "Why Fengcheng",
+    "advantage1Title": "Body parts",
+    "advantage1": "Bumper, body kit, hood, grille, fender, door, tailgate — by vehicle fitment.",
+    "advantage2Title": "Modified lights",
+    "advantage2": "Headlights and tail lights for Toyota, Jeep, Mitsubishi and more.",
+    "advantage3Title": "Factory direct",
+    "advantage3": "OEM / ODM / agency · finished product inspection · drawing-based customization.",
+    "ctaBlockTitle": "Ready to quote your project?",
+    "ctaBlockSub": "Add SKUs to the inquiry basket or send a message — we respond within 4 hours on business days."
   },
   "products": {
     "title": "Products",
-    "all": "All Products",
-    "inquiry": "Add to Inquiry",
+    "all": "All products",
+    "inquiry": "Add to inquiry",
     "specs": "Specifications",
-    "partNumber": "Part Number",
+    "partNumber": "Part number",
     "sku": "SKU",
-    "brands": "Vehicle brands",
-    "noPrice": "Price available on request"
+    "brands": "Vehicle fitment",
+    "noPrice": "Price on request — submit inquiry for quote"
   },
   "inquiry": {
-    "title": "Inquiry Basket",
+    "title": "Inquiry basket",
     "empty": "Your inquiry basket is empty.",
+    "browse": "Browse catalog",
     "remove": "Remove",
-    "submit": "Submit Inquiry",
+    "submit": "Submit inquiry",
     "name": "Name",
     "email": "Email",
     "company": "Company",
     "phone": "Phone",
     "country": "Country",
-    "message": "Message",
+    "message": "Message / requirements",
     "success": "Thank you. We will contact you shortly.",
-    "error": "Submission failed. Please try again."
+    "error": "Submission failed. Please try again.",
+    "sidebarTitle": "B2B wholesale inquiry",
+    "sidebarBody": "No checkout — we quote by email. Add multiple SKUs and describe OEM/ODM needs in your message."
   },
   "contact": {
-    "title": "Contact Us",
-    "submit": "Send Message"
+    "title": "Contact us",
+    "submit": "Send message",
+    "location": "Jiangsu Province, China",
+    "alibaba": "Visit our Alibaba store"
   },
   "footer": {
     "autoTranslated": "Auto-translated — contact us for details.",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "company": "Changzhou Fengcheng Import And Export Co., Ltd.",
+    "alibaba": "Alibaba store",
+    "companyLinks": "Company"
   },
   "about": {
-    "title": "About Us"
+    "title": "About Fengcheng"
   },
   "faq": {
     "title": "FAQ"
