@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "siteName": "LumaDrive LED",
+    "tagline": "Automotive LED lighting for global B2B buyers"
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "inquiry": "Inquiry Basket"
+  },
+  "home": {
+    "heroTitle": "LED Headlights & Mounting Solutions",
+    "heroSubtitle": "OEM/ODM ready. Request a quote for your market.",
+    "ctaProducts": "Browse Products",
+    "ctaContact": "Contact Sales",
+    "featured": "Featured Products",
+    "advantagesTitle": "Why work with us",
+    "advantage1": "Stable quality control",
+    "advantage2": "Fast sampling support",
+    "advantage3": "Flexible OEM/ODM"
+  },
+  "products": {
+    "title": "Products",
+    "all": "All Products",
+    "inquiry": "Add to Inquiry",
+    "specs": "Specifications",
+    "partNumber": "Part Number",
+    "sku": "SKU",
+    "brands": "Vehicle brands",
+    "noPrice": "Price available on request"
+  },
+  "inquiry": {
+    "title": "Inquiry Basket",
+    "empty": "Your inquiry basket is empty.",
+    "remove": "Remove",
+    "submit": "Submit Inquiry",
+    "name": "Name",
+    "email": "Email",
+    "company": "Company",
+    "phone": "Phone",
+    "country": "Country",
+    "message": "Message",
+    "success": "Thank you. We will contact you shortly.",
+    "error": "Submission failed. Please try again."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "submit": "Send Message"
+  },
+  "footer": {
+    "autoTranslated": "Auto-translated — contact us for details.",
+    "rights": "All rights reserved."
+  },
+  "about": {
+    "title": "About Us"
+  },
+  "faq": {
+    "title": "FAQ"
+  }
+}
