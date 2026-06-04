@@ -11,6 +11,10 @@
 # env
 .env
 .env*.local
+.env.production
+.env.seed
+.env.vercel
+.env.vercel.pulled
 
 # payload
 /media

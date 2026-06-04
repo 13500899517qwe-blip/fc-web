@@ -20,6 +20,17 @@
 | `Parent` invalid | 分类 parent 须为 **number**（已在 seed 脚本修复） |
 | Pulling schema 很慢 | Neon 冷启动，等 1–2 分钟再重试 |
 
-## Seed 只在本机跑
+## 线上灌分类（推荐）
 
-Vercel 构建**不要**跑 seed；本地 `.env` 的 `DATABASE_URI` 与 Vercel **相同**即可。
+Neon 连接串**不会**完整下发到本机 `vercel env pull`，请用浏览器：
+
+- 设 `SEED_CATALOG_ENABLED=true` → Redeploy  
+- 访问 `/api/seed-catalog?reset=1&key=你的PAYLOAD_SECRET`  
+- 成功应见 `"categoriesUpserted": 11`、`"treeFileFound": true`  
+- 完成后**删除** `SEED_CATALOG_ENABLED` 再 Redeploy  
+
+详见 [SEED-数据库一步操作.md](./SEED-数据库一步操作.md)。
+
+## 本机 seed（可选）
+
+需自己在 Vercel Storage / Neon 复制 `DATABASE_URI` 到 `web/.env`。Vercel 构建**不要**跑 seed。

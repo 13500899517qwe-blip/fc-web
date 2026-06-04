@@ -32,14 +32,14 @@ sequenceDiagram
 ## 为什么需要 Postgres（Neon）
 
 - **产品 / 分类 / 多语言**：Payload CMS 存在库里，运营可在 `/admin` 改，不用每次改代码部署。  
-- **询盘记录**：[`inquiries`](E:\FC web\web\src\collections\Inquiries.ts) 集合，含 SKU 列表、客户信息。  
+- **询盘记录**：[`inquiries`](../web/src/collections/Inquiries.ts) 集合，含 SKU 列表、客户信息。  
 - **管理员**：登录 `/admin` 需要用户表。
 
 没有数据库 = 没有当前这套 B2B 站，只能做成「静态页 + 单一联系表单」。
 
 ## 为什么还需要邮件（Resend）
 
-- 代码已在 [`/api/inquiry`](E:\FC web\web\src\app\api\inquiry\route.ts)：入库后，若配置了 `RESEND_API_KEY` 和 `INQUIRY_TO_EMAIL` 即发信。  
+- 代码已在 [`/api/inquiry`](../web/src/app/api/inquiry/route.ts)：入库后，若配置了 `RESEND_API_KEY` 和 `INQUIRY_TO_EMAIL` 即发信。  
 - 练手可用 Resend 免费档发到 **个人 Gmail**，不必企业邮箱。  
 - 转正时换成 `sales@你的域名.com` 并做 Resend 域名验证。
 
