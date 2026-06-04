@@ -1,17 +1,13 @@
-import 'dotenv/config'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { getPayload } from 'payload'
-import config from '../src/payload.config'
-import { locales, type AppLocale } from '../src/i18n/routing'
-import { translateText } from '../src/lib/translate'
-import { company } from '../src/lib/company'
+import type { Payload } from 'payload'
+import { locales, type AppLocale } from '@/i18n/routing'
+import { translateText } from '@/lib/translate'
+import { company } from '@/lib/company'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const materialsDir = fs.existsSync(path.resolve(__dirname, '../seed-data'))
-  ? path.resolve(__dirname, '../seed-data')
-  : path.resolve(__dirname, '../../网站资料')
+const materialsDir = path.resolve(__dirname, '../../seed-data')
 
 function slugify(input: string): string {
   return input
@@ -31,22 +27,23 @@ function parseFaqFile(content: string): { question: string; answer: string }[] {
   return items
 }
 
-async function clearCatalog(payload: Awaited<ReturnType<typeof getPayload>>) {
+async function clearCatalog(payload: Payload) {
+  const cleared: Record<string, number> = {}
   for (const collection of ['products', 'categories', 'site-content'] as const) {
     const { docs } = await payload.find({ collection, limit: 500, depth: 0 })
     for (const doc of docs) {
       await payload.delete({ collection, id: doc.id })
     }
-    console.log(`Cleared ${collection}: ${docs.length}`)
+    cleared[collection] = docs.length
   }
+  return cleared
 }
 
-async function seed() {
-  const payload = await getPayload({ config })
-
-  if (process.env.SEED_RESET === 'true') {
-    await clearCatalog(payload)
-  }
+export async function runSeedCatalog(
+  payload: Payload,
+  options: { reset?: boolean; seedProducts?: boolean } = {},
+) {
+  const cleared = options.reset ? await clearCatalog(payload) : undefined
 
   const email = process.env.SEED_ADMIN_EMAIL || 'admin@example.com'
   const password = process.env.SEED_ADMIN_PASSWORD || 'changeme123'
@@ -56,17 +53,18 @@ async function seed() {
     where: { email: { equals: email } },
     limit: 1,
   })
-
+  let adminCreated = false
   if (existingUsers.docs.length === 0) {
     await payload.create({
       collection: 'users',
       data: { email, password },
     })
-    console.log(`Admin user: ${email} / ${password}`)
+    adminCreated = true
   }
 
   const treePath = path.join(materialsDir, '分类树.txt')
   const categoryMap = new Map<string, number>()
+  let categoriesUpserted = 0
 
   if (fs.existsSync(treePath)) {
     const lines = fs.readFileSync(treePath, 'utf-8').split('\n')
@@ -94,6 +92,7 @@ async function seed() {
             data: { title: line, slug, level: '1' },
           })
           parentL1 = doc.id as number
+          categoriesUpserted++
         }
         categoryMap.set(line, parentL1)
         parentL2 = null
@@ -114,6 +113,7 @@ async function seed() {
             data: { title: line, slug, level: '2', parent: parentL1 },
           })
           id = doc.id as number
+          categoriesUpserted++
         }
         parentL2 = id
         categoryMap.set(line, parentL2)
@@ -134,19 +134,20 @@ async function seed() {
             data: { title: line, slug, level: '3', parent: parentL2 },
           })
           id = doc.id as number
+          categoriesUpserted++
         }
         categoryMap.set(line, id)
       }
     }
   }
 
+  let productsImported = 0
   const csvPath = path.join(materialsDir, '产品主数据.csv')
-  const seedProducts = process.env.SEED_PRODUCTS === 'true'
-  if (seedProducts && fs.existsSync(csvPath)) {
+  if (options.seedProducts && fs.existsSync(csvPath)) {
     const rows = fs.readFileSync(csvPath, 'utf-8').trim().split('\n').slice(1)
     for (const row of rows) {
       const cols = row.split(',')
-      if (cols.length < 7) continue
+      if (cols.length < 7 || !cols[0]?.trim()) continue
       const [sku, title, partNumber, cat1, cat2, brands, specs] = cols
       const slug = slugify(sku)
       const catIds: number[] = []
@@ -210,10 +211,8 @@ async function seed() {
           })
         }
       }
-      console.log(`Product: ${sku}`)
+      productsImported++
     }
-  } else if (!seedProducts) {
-    console.log('Products skipped (set SEED_PRODUCTS=true to import from 产品主数据.csv).')
   }
 
   const faqPath = path.join(materialsDir, 'FAQ.txt')
@@ -274,11 +273,11 @@ async function seed() {
     }
   }
 
-  console.log('Seed complete.')
-  process.exit(0)
+  return {
+    cleared,
+    adminCreated,
+    categoriesUpserted,
+    productsImported,
+    productsSkipped: !options.seedProducts,
+  }
 }
-
-seed().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})

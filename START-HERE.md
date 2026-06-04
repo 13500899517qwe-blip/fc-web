@@ -31,13 +31,7 @@
 
 B2B 汽配询盘站（**常州丰成** — 车身件 + 改装灯，与 [阿里店](http://fengchengcar.en.alibaba.com) 一致）：8 语言子目录 + CMS + 询盘篮 + 邮件/后台。代码在 [web/](web/)。
 
-**更新线上数据**（替换旧占位产品）：
-
-```bash
-cd web
-# .env 里 DATABASE_URI 与 Vercel 相同
-pnpm seed:reset
-```
+**更新线上分类/文案**（产品先留空）：见 **[docs/SEED-数据库一步操作.md](docs/SEED-数据库一步操作.md)**（推荐浏览器点一次；本机需 Neon 连接串）
 
 ## 目录
 
