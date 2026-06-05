@@ -2,10 +2,9 @@ import { getTranslations } from 'next-intl/server'
 import { CatalogSidebar } from '@/components/catalog/CatalogSidebar'
 import { CatalogSearch } from '@/components/catalog/CatalogSearch'
 import { Breadcrumbs } from '@/components/catalog/Breadcrumbs'
-import type { CategoryNode } from '@/lib/catalog'
 
 type Props = {
-  categoryTree: CategoryNode[]
+  categoryTree: Awaited<ReturnType<typeof import('@/lib/catalog-queries').getCategoryTree>>
   activeCategory?: string
   activeBrand?: string
   searchQuery?: string
@@ -26,35 +25,38 @@ export async function CatalogLayout({
   children,
 }: Props) {
   const t = await getTranslations('catalog')
+  const ts = await getTranslations('store')
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
-      <Breadcrumbs items={breadcrumbItems} />
-      <div className="flex flex-col gap-8 lg:flex-row">
-        <div className="hidden w-56 shrink-0 lg:block">
-          <CatalogSidebar
-            categoryTree={categoryTree}
-            activeCategory={activeCategory}
-            activeBrand={activeBrand}
-            searchQuery={searchQuery}
-          />
+    <div className="min-h-[60vh]">
+      <div className="border-b border-zinc-200 bg-white py-4">
+        <div className="mx-auto max-w-[1200px] px-4">
+          <Breadcrumbs items={breadcrumbItems} />
+          <h1 className="mt-3 text-xl font-bold text-zinc-900">{title}</h1>
+          {subtitle && <p className="mt-1 text-sm text-zinc-600">{subtitle}</p>}
+          <div className="mt-4 max-w-xl">
+            <CatalogSearch defaultQuery={searchQuery} categorySlug={activeCategory} brand={activeBrand} />
+          </div>
         </div>
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-zinc-900">{title}</h1>
-              {subtitle && <p className="mt-1 text-sm text-zinc-600">{subtitle}</p>}
-              <p className="mt-2 text-xs text-amber-800">{t('quoteNote')}</p>
-            </div>
-            <div className="lg:hidden w-full">
-              <CatalogSearch
-                defaultQuery={searchQuery}
-                categorySlug={activeCategory}
-                brand={activeBrand}
+      </div>
+
+      <div className="mx-auto max-w-[1200px] px-4 py-6">
+        <div className="flex flex-col gap-6 lg:flex-row">
+          <aside className="hidden w-52 shrink-0 lg:block">
+            <div className="rounded border border-zinc-200 bg-white p-4">
+              <p className="text-xs font-bold uppercase text-zinc-500">{ts('seeAllCategories')}</p>
+              <CatalogSidebar
+                categoryTree={categoryTree}
+                activeCategory={activeCategory}
+                activeBrand={activeBrand}
+                searchQuery={searchQuery}
               />
             </div>
+          </aside>
+          <div className="min-w-0 flex-1">
+            <p className="mb-4 text-xs text-amber-800">{t('quoteNote')}</p>
+            {children}
           </div>
-          <div className="mt-8">{children}</div>
         </div>
       </div>
     </div>

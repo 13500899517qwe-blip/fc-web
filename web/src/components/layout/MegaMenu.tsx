@@ -22,7 +22,7 @@ export function MegaMenu({ categoryTree }: Props) {
     >
       <button
         type="button"
-        className="inline-flex items-center gap-1 text-sm font-medium text-zinc-700 hover:text-blue-700"
+        className="inline-flex items-center gap-1 text-sm font-medium text-zinc-700 hover:text-brand"
         aria-expanded={open}
       >
         {t('products')}
@@ -41,7 +41,7 @@ export function MegaMenu({ categoryTree }: Props) {
                   <div key={l1.id}>
                     <Link
                       href={buildProductsHref({ categorySlug: l1.slug })}
-                      className="font-semibold text-zinc-900 hover:text-blue-700"
+                      className="font-semibold text-zinc-900 hover:text-brand"
                       onClick={() => setOpen(false)}
                     >
                       {l1.title}
@@ -51,7 +51,7 @@ export function MegaMenu({ categoryTree }: Props) {
                         <li key={l2.id}>
                           <Link
                             href={buildProductsHref({ categorySlug: l2.slug })}
-                            className="text-sm text-zinc-600 hover:text-blue-700"
+                            className="text-sm text-zinc-600 hover:text-brand"
                             onClick={() => setOpen(false)}
                           >
                             {l2.title}
@@ -72,7 +72,7 @@ export function MegaMenu({ categoryTree }: Props) {
                   <li key={brand}>
                     <Link
                       href={buildProductsHref({ brand })}
-                      className="text-sm text-zinc-700 hover:text-blue-700"
+                      className="text-sm text-zinc-700 hover:text-brand"
                       onClick={() => setOpen(false)}
                     >
                       {brand}
@@ -82,7 +82,7 @@ export function MegaMenu({ categoryTree }: Props) {
               </ul>
               <Link
                 href="/products"
-                className="mt-4 inline-block text-sm font-semibold text-blue-700 hover:underline"
+                className="mt-4 inline-block text-sm font-semibold text-brand-dark hover:underline"
                 onClick={() => setOpen(false)}
               >
                 {t('viewAllProducts')}

@@ -40,7 +40,7 @@ export function CatalogSidebar({
               href={href({ categorySlug: undefined, brand: activeBrand })}
               className={cn(
                 'block rounded-md px-3 py-2 text-sm font-medium',
-                !activeCategory ? 'bg-blue-50 text-blue-800' : 'text-zinc-700 hover:bg-zinc-100',
+                !activeCategory ? 'bg-brand-50 text-brand-dark' : 'text-zinc-700 hover:bg-zinc-100',
               )}
             >
               {t('allProducts')}
@@ -53,7 +53,7 @@ export function CatalogSidebar({
                 className={cn(
                   'block rounded-md px-3 py-2 text-sm font-semibold',
                   activeCategory === l1.slug
-                    ? 'bg-blue-50 text-blue-800'
+                    ? 'bg-brand-50 text-brand-dark'
                     : 'text-zinc-800 hover:bg-zinc-100',
                 )}
               >
@@ -68,8 +68,8 @@ export function CatalogSidebar({
                         className={cn(
                           'block rounded-md px-2 py-1.5 text-sm',
                           activeCategory === l2.slug
-                            ? 'font-medium text-blue-700'
-                            : 'text-zinc-600 hover:text-blue-700',
+                            ? 'font-medium text-brand-dark'
+                            : 'text-zinc-600 hover:text-brand',
                         )}
                       >
                         {l2.title}
@@ -94,7 +94,7 @@ export function CatalogSidebar({
               'rounded-full border px-3 py-1 text-xs font-medium',
               !activeBrand
                 ? 'border-zinc-400 bg-zinc-100 text-zinc-800'
-                : 'border-zinc-300 bg-white text-zinc-600 hover:border-blue-400',
+                : 'border-zinc-300 bg-white text-zinc-600 hover:border-brand',
             )}
           >
             {t('allBrands')}
@@ -106,8 +106,8 @@ export function CatalogSidebar({
               className={cn(
                 'rounded-full border px-3 py-1 text-xs font-medium transition',
                 activeBrand === brand
-                  ? 'border-blue-700 bg-blue-700 text-white'
-                  : 'border-zinc-300 bg-white text-zinc-700 hover:border-blue-400',
+                  ? 'border-brand bg-brand text-white'
+                  : 'border-zinc-300 bg-white text-zinc-700 hover:border-brand',
               )}
             >
               {brand}

@@ -4,6 +4,8 @@ import { MessageCircle } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 
 export function WhatsAppButton() {
+  if (!siteConfig.whatsappNumber) return null
+
   const url = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
     'Hello, I would like to inquire about Fengcheng auto body parts and lights.',
   )}`

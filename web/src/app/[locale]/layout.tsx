@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { hasLocale } from 'next-intl'
 import { routing, rtlLocales, type AppLocale } from '@/i18n/routing'
-import { TopBar } from '@/components/layout/TopBar'
-import { SiteHeader } from '@/components/layout/SiteHeader'
+import { AlibabaStoreHeader } from '@/components/layout/AlibabaStoreHeader'
+import { AlibabaStoreNav } from '@/components/layout/AlibabaStoreNav'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton'
 import { InquiryBasketProvider } from '@/components/inquiry/InquiryBasketProvider'
@@ -44,23 +44,19 @@ export default async function LocaleLayout({ children, params }: Props) {
   try {
     categoryTree = await getCategoryTree(locale as AppLocale)
   } catch {
-    /* DB unavailable at build */
+    /* DB unavailable */
   }
 
   const messages = await getMessages()
   const dir = rtlLocales.includes(locale as AppLocale) ? 'rtl' : 'ltr'
 
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
+    <html lang={locale} dir={dir} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-[#f5f5f5] text-zinc-900">
         <NextIntlClientProvider messages={messages}>
           <InquiryBasketProvider>
-            <TopBar />
-            <SiteHeader categoryTree={categoryTree} />
+            <AlibabaStoreHeader />
+            <AlibabaStoreNav />
             <main className="flex-1">{children}</main>
             <SiteFooter categoryTree={categoryTree} />
             <WhatsAppButton />

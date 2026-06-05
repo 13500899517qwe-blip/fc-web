@@ -2,7 +2,7 @@ import type { Where } from 'payload'
 import { getPayload } from '@/lib/payload'
 import { buildCategoryTree, type CategoryNode } from '@/lib/catalog'
 import type { AppLocale } from '@/i18n/routing'
-import { getMediaUrl } from '@/lib/media'
+import { resolveProductImageUrl } from '@/lib/media'
 type MediaDoc = { url?: string | null; alt?: string | null }
 
 export type ProductListItem = {
@@ -13,6 +13,7 @@ export type ProductListItem = {
   summary?: string
   partNumber?: string
   vehicleBrands?: string
+  categoryTitle?: string
   imageUrl: string | null
   imageAlt: string
 }
@@ -109,15 +110,20 @@ export async function findProducts(filters: ProductFilters): Promise<{
 
   const docs: ProductListItem[] = result.docs.map((doc) => {
     const image = doc.image as MediaDoc | number | null | undefined
+    const sku = doc.sku as string
+    const categories = Array.isArray(doc.categories)
+      ? doc.categories.filter((c): c is Exclude<typeof c, number> => typeof c === 'object' && c !== null)
+      : []
     return {
       id: String(doc.id),
-      sku: doc.sku as string,
+      sku,
       title: doc.title as string,
       slug: doc.slug as string,
       summary: doc.summary as string | undefined,
       partNumber: doc.partNumber as string | undefined,
       vehicleBrands: doc.vehicleBrands as string | undefined,
-      imageUrl: getMediaUrl(image),
+      categoryTitle: categories[0]?.title as string | undefined,
+      imageUrl: resolveProductImageUrl(image, sku, doc.sourceImageUrl as string | undefined),
       imageAlt: doc.title as string,
     }
   })
@@ -128,6 +134,21 @@ export async function findProducts(filters: ProductFilters): Promise<{
     totalPages: result.totalPages,
     page: result.page ?? page,
   }
+}
+
+export async function findRelatedProducts(
+  locale: AppLocale,
+  product: { id: string; slug: string; categories: { slug: string }[]; vehicleBrands?: string },
+  limit = 4,
+): Promise<ProductListItem[]> {
+  const categorySlug = product.categories[0]?.slug
+  const result = await findProducts({
+    locale,
+    categorySlug,
+    brand: product.vehicleBrands?.split(/[;,]/)[0]?.trim(),
+    limit: limit + 2,
+  })
+  return result.docs.filter((d) => d.slug !== product.slug).slice(0, limit)
 }
 
 export async function getProductBySlug(locale: AppLocale, slug: string) {
@@ -143,6 +164,7 @@ export async function getProductBySlug(locale: AppLocale, slug: string) {
   if (!doc) return null
 
   const image = doc.image as MediaDoc | number | null | undefined
+  const sku = doc.sku as string
   const categories = Array.isArray(doc.categories)
     ? doc.categories
         .filter((c): c is Exclude<typeof c, number> => typeof c === 'object' && c !== null)
@@ -150,7 +172,8 @@ export async function getProductBySlug(locale: AppLocale, slug: string) {
     : []
 
   return {
-    sku: doc.sku as string,
+    id: String(doc.id),
+    sku,
     title: doc.title as string,
     slug: doc.slug as string,
     partNumber: doc.partNumber as string | undefined,
@@ -158,7 +181,7 @@ export async function getProductBySlug(locale: AppLocale, slug: string) {
     description: doc.description as string | undefined,
     specs: doc.specs as string | undefined,
     vehicleBrands: doc.vehicleBrands as string | undefined,
-    imageUrl: getMediaUrl(image),
+    imageUrl: resolveProductImageUrl(image, sku, doc.sourceImageUrl as string | undefined),
     imageAlt: doc.title as string,
     categories,
   }

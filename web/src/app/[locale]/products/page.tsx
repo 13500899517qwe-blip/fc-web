@@ -58,7 +58,7 @@ export default async function ProductsPage({ params, searchParams }: Props) {
           <p className="mb-4 text-sm text-zinc-500">
             {tc('resultsCount', { count: result.totalDocs })}
           </p>
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {result.docs.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

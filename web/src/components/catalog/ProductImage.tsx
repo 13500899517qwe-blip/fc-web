@@ -10,8 +10,11 @@ type Props = {
   priority?: boolean
 }
 
+const EXTERNAL_CDN = /alicdn\.com|blob\.vercel-storage\.com/
+
 export function ProductImage({ src, alt, className, sizes = '(max-width:768px) 100vw, 33vw', priority }: Props) {
   if (src) {
+    const useUnoptimized = EXTERNAL_CDN.test(src)
     return (
       <div className={cn('relative aspect-[4/3] overflow-hidden bg-zinc-100', className)}>
         <Image
@@ -21,6 +24,7 @@ export function ProductImage({ src, alt, className, sizes = '(max-width:768px) 1
           className="object-cover"
           sizes={sizes}
           priority={priority}
+          unoptimized={useUnoptimized}
         />
       </div>
     )

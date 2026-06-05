@@ -1,15 +1,16 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { localeLabels, locales, type AppLocale } from '@/i18n/routing'
 import { Link, usePathname } from '@/i18n/navigation'
-import { company } from '@/lib/company'
-import { Menu, ShoppingCart, X } from 'lucide-react'
-import { useInquiryBasket } from '@/components/inquiry/InquiryBasketProvider'
-import { MegaMenu } from '@/components/layout/MegaMenu'
 import { CatalogSearch } from '@/components/catalog/CatalogSearch'
-import type { CategoryNode } from '@/lib/catalog'
+import { company } from '@/lib/company'
+import { ChevronDown, Menu, ShoppingCart, X } from 'lucide-react'
+import { useInquiryBasket } from '@/components/inquiry/InquiryBasketProvider'
+import { buildProductsHref } from '@/lib/catalog-url'
+import { vehicleBrands, type CategoryNode } from '@/lib/catalog'
 import { cn } from '@/lib/cn'
 
 type Props = { categoryTree: CategoryNode[] }
@@ -20,8 +21,9 @@ export function SiteHeader({ categoryTree }: Props) {
   const pathname = usePathname()
   const { items } = useInquiryBasket()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [productsOpen, setProductsOpen] = useState(false)
 
-  const navLinks = [
+  const mainNav = [
     { href: '/', label: t('home') },
     { href: '/about', label: t('about') },
     { href: '/faq', label: t('faq') },
@@ -29,114 +31,154 @@ export function SiteHeader({ categoryTree }: Props) {
   ]
 
   return (
-    <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white shadow-sm">
-      <div className="border-b border-zinc-100 bg-zinc-50/80">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2">
-          <CatalogSearch />
-        </div>
-      </div>
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="shrink-0">
-          <span className="text-xl font-bold tracking-tight text-zinc-900">
-            {company.brandShort}
-          </span>
-          <span className="hidden text-xs text-zinc-500 sm:block">B2B · OEM/ODM</span>
-        </Link>
-
-        <nav className="hidden items-center gap-5 lg:flex">
-          <Link
-            href="/"
-            className={cn(
-              'text-sm font-medium',
-              pathname === '/' ? 'text-blue-800' : 'text-zinc-700 hover:text-blue-700',
-            )}
-          >
-            {t('home')}
+    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white shadow-sm">
+      <div className="mx-auto max-w-[1200px] px-4">
+        <div className="flex items-center justify-between gap-4 py-3">
+          <Link href="/" className="shrink-0">
+            <Image src="/logo.png" alt={company.brandName} width={140} height={48} className="h-11 w-auto" priority />
           </Link>
-          <MegaMenu categoryTree={categoryTree} />
-          {navLinks.slice(1).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'text-sm font-medium',
-                pathname === item.href ? 'text-blue-800' : 'text-zinc-700 hover:text-blue-700',
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/inquiry"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-blue-800 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-          >
-            <ShoppingCart className="h-4 w-4" />
-            {t('inquiry')}
-            {items.length > 0 && (
-              <span className="rounded-full bg-amber-400 px-1.5 text-xs font-bold text-zinc-900">
-                {items.length}
-              </span>
-            )}
-          </Link>
-        </nav>
 
-        <div className="flex items-center gap-2">
-          <select
-            className="rounded-lg border border-zinc-300 px-2 py-1.5 text-sm"
-            value={locale}
-            onChange={(e) => {
-              const next = e.target.value as AppLocale
-              window.location.href = `/${next}${pathname === '/' ? '' : pathname}`
-            }}
-            aria-label="Language"
-          >
-            {locales.map((l) => (
-              <option key={l} value={l}>
-                {localeLabels[l]}
-              </option>
+          <nav className="hidden flex-1 items-center justify-center gap-6 lg:flex">
+            {mainNav.slice(0, 2).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'text-sm font-medium uppercase tracking-wide',
+                  pathname === item.href ? 'text-brand' : 'text-zinc-700 hover:text-brand',
+                )}
+              >
+                {item.label}
+              </Link>
             ))}
-          </select>
-          <button
-            type="button"
-            className="rounded-lg border border-zinc-300 p-2 lg:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setProductsOpen(true)}
+              onMouseLeave={() => setProductsOpen(false)}
+            >
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 text-sm font-medium uppercase tracking-wide text-zinc-700 hover:text-brand"
+              >
+                {t('products')}
+                <ChevronDown className={cn('h-4 w-4 transition', productsOpen && 'rotate-180')} />
+              </button>
+              {productsOpen && (
+                <div className="absolute left-1/2 top-full z-50 w-[720px] -translate-x-1/2 pt-2">
+                  <div className="grid grid-cols-3 gap-6 rounded border border-zinc-200 bg-white p-6 shadow-xl">
+                    <div className="col-span-2">
+                      <p className="text-xs font-bold uppercase text-zinc-500">{t('byCategory')}</p>
+                      <div className="mt-3 grid grid-cols-2 gap-4">
+                        {categoryTree.map((l1) => (
+                          <div key={l1.id}>
+                            <Link
+                              href={buildProductsHref({ categorySlug: l1.slug })}
+                              className="font-semibold text-zinc-900 hover:text-brand"
+                              onClick={() => setProductsOpen(false)}
+                            >
+                              {l1.title}
+                            </Link>
+                            <ul className="mt-1 space-y-0.5">
+                              {l1.children.map((l2) => (
+                                <li key={l2.id}>
+                                  <Link
+                                    href={buildProductsHref({ categorySlug: l2.slug })}
+                                    className="text-sm text-zinc-600 hover:text-brand"
+                                    onClick={() => setProductsOpen(false)}
+                                  >
+                                    {l2.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-l border-zinc-100 pl-4">
+                      <p className="text-xs font-bold uppercase text-zinc-500">{t('byVehicle')}</p>
+                      <ul className="mt-3 max-h-56 space-y-1 overflow-y-auto">
+                        {vehicleBrands.map((brand) => (
+                          <li key={brand}>
+                            <Link
+                              href={buildProductsHref({ brand })}
+                              className="text-sm text-zinc-700 hover:text-brand"
+                              onClick={() => setProductsOpen(false)}
+                            >
+                              {brand}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href="/products" className="mt-3 inline-block text-sm font-semibold text-brand hover:underline">
+                        {t('viewAllProducts')}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {mainNav.slice(2).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'text-sm font-medium uppercase tracking-wide',
+                  pathname === item.href ? 'text-brand' : 'text-zinc-700 hover:text-brand',
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            <Link
+              href="/inquiry"
+              className="inline-flex items-center gap-1.5 rounded bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-light"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              {t('inquiry')}
+              {items.length > 0 && (
+                <span className="rounded-full bg-amber-400 px-1.5 text-xs font-bold text-zinc-900">{items.length}</span>
+              )}
+            </Link>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <select
+              className="rounded border border-zinc-300 px-2 py-1 text-xs"
+              value={locale}
+              onChange={(e) => {
+                const next = e.target.value as AppLocale
+                window.location.href = `/${next}${pathname === '/' ? '' : pathname}`
+              }}
+              aria-label="Language"
+            >
+              {locales.map((l) => (
+                <option key={l} value={l}>{localeLabels[l]}</option>
+              ))}
+            </select>
+            <button type="button" className="rounded border border-zinc-300 p-2 lg:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        <div className="hidden border-t border-zinc-100 py-3 lg:block">
+          <CatalogSearch />
         </div>
       </div>
 
       {mobileOpen && (
         <nav className="border-t border-zinc-200 bg-white px-4 py-4 lg:hidden">
-          <ul className="space-y-2 text-sm font-medium">
-            <li>
-              <Link href="/" onClick={() => setMobileOpen(false)}>
-                {t('home')}
-              </Link>
-            </li>
-            <li>
-              <Link href="/products" onClick={() => setMobileOpen(false)}>
-                {t('products')}
-              </Link>
-            </li>
-            {navLinks.slice(1).map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} onClick={() => setMobileOpen(false)}>
-                  {item.label}
-                </Link>
-              </li>
+          <CatalogSearch />
+          <ul className="mt-4 space-y-2 text-sm font-medium">
+            {mainNav.map((item) => (
+              <li key={item.href}><Link href={item.href} onClick={() => setMobileOpen(false)}>{item.label}</Link></li>
             ))}
-            <li>
-              <Link
-                href="/inquiry"
-                className="inline-flex items-center gap-1 text-blue-800"
-                onClick={() => setMobileOpen(false)}
-              >
-                <ShoppingCart className="h-4 w-4" />
-                {t('inquiry')} ({items.length})
-              </Link>
-            </li>
+            <li><Link href="/products" onClick={() => setMobileOpen(false)}>{t('products')}</Link></li>
+            <li><Link href="/inquiry" onClick={() => setMobileOpen(false)}>{t('inquiry')} ({items.length})</Link></li>
           </ul>
         </nav>
       )}

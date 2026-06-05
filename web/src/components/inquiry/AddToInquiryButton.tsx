@@ -2,18 +2,32 @@
 
 import { useTranslations } from 'next-intl'
 import { useInquiryBasket } from './InquiryBasketProvider'
+import { cn } from '@/lib/cn'
 
-export function AddToInquiryButton({ sku, title }: { sku: string; title: string }) {
+type Props = {
+  sku: string
+  title: string
+  className?: string
+  compact?: boolean
+}
+
+export function AddToInquiryButton({ sku, title, className, compact }: Props) {
   const t = useTranslations('products')
-  const { addItem } = useInquiryBasket()
+  const { addItem, items } = useInquiryBasket()
+  const inBasket = items.some((i) => i.sku === sku)
 
   return (
     <button
       type="button"
       onClick={() => addItem({ sku, title })}
-      className="rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+      className={cn(
+        'rounded bg-[#ff6a00] font-semibold text-white hover:bg-[#e85f00]',
+        compact ? 'px-3 py-1.5 text-xs' : 'px-5 py-2.5 text-sm',
+        inBasket && 'bg-zinc-700',
+        className,
+      )}
     >
-      {t('inquiry')}
+      {inBasket ? t('inBasket') : t('inquiry')}
     </button>
   )
 }

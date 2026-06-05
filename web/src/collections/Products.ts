@@ -68,6 +68,13 @@ export const Products: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
     },
+    {
+      name: 'sourceImageUrl',
+      type: 'text',
+      admin: {
+        description: 'External image URL (e.g. Alibaba CDN) used until media is uploaded to Blob.',
+      },
+    },
   ],
   hooks: {
     afterChange: [translateProductHook],

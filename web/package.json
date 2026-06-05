@@ -12,6 +12,7 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed.ts",
     "seed:reset": "cross-env NODE_OPTIONS=--no-deprecation SEED_RESET=true tsx scripts/seed.ts",
+    "import-alibaba": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/import-alibaba.ts",
     "translate:ui": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/translate-ui-messages.ts"
   },
   "dependencies": {
