@@ -35,15 +35,15 @@ export function HeroSection() {
             key={src}
             className={cn(
               'absolute inset-0 transition-opacity duration-1000',
-              i === index ? 'opacity-40' : 'opacity-0',
+              i === index ? 'opacity-60' : 'opacity-0',
             )}
           >
             <Image src={src} alt="" fill className="object-cover" priority={i === 0} unoptimized />
           </div>
         ))}
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/95 via-surface-dark/70 to-surface-dark/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-surface-dark/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/85 via-surface-dark/50 to-surface-dark/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-surface-dark/40 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
