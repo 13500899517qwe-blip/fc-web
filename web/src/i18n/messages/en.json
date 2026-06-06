@@ -178,6 +178,8 @@
     "factoryGallerySub": "Injection molding, assembly, and QC for auto body parts and modified lights."
   },
   "faq": {
-    "title": "FAQ"
+    "title": "FAQ",
+    "subtitle": "Find answers to the most common questions about ordering, products, and shipping.",
+    "contact": "Still have questions?"
   }
 }
