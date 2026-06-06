@@ -20,10 +20,10 @@ export function HeroSection() {
   }, [images.length])
 
   const stats = [
-    { label: 'Store Rating', value: alibabaStore.metrics.storeRating },
-    { label: 'On-Time Delivery', value: alibabaStore.metrics.onTimeDelivery },
-    { label: 'Response Time', value: alibabaStore.metrics.responseTime },
-    { label: 'Floorspace', value: alibabaStore.metrics.floorspace },
+    { label: t('storeRating'), value: alibabaStore.metrics.storeRating },
+    { label: t('onTimeDelivery'), value: alibabaStore.metrics.onTimeDelivery },
+    { label: t('responseTime'), value: alibabaStore.metrics.responseTime },
+    { label: t('floorspace'), value: alibabaStore.metrics.floorspace },
   ]
 
   return (
@@ -53,19 +53,18 @@ export function HeroSection() {
             {/* Badge */}
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-medium text-brand">
               <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              {company.businessType} · IATF16949 Certified
+              {t('heroBadge')}
             </div>
 
             {/* Headline */}
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl text-balance">
-              Premium Auto Body Parts &amp;<br />
-              <span className="text-brand">Modified Lighting</span> Manufacturer
+              {t('heroHeadline1')}<br />
+              <span className="text-brand">{t('heroHeadline2')}</span>
             </h1>
 
             {/* Subtitle */}
             <p className="mt-4 max-w-xl text-base leading-relaxed text-text-on-dark/80 md:text-lg">
-              OEM/ODM supplier of bumpers, hoods, fenders, doors, tailgates, and LED tail lights.
-              98% vehicle model coverage. IATF16949 &amp; ISO9001 certified.
+              {t('heroSubtitle')}
             </p>
 
             {/* CTA buttons */}
