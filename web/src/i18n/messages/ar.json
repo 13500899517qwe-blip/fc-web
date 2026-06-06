@@ -98,7 +98,12 @@
     "title": "Contact us",
     "submit": "Send message",
     "location": "Jiangsu Province, China",
-    "alibaba": "Visit our Alibaba store"
+    "alibaba": "Visit our Alibaba store",
+    "reachUs": "How to reach us",
+    "response": "Typical response within {time}",
+    "rating": "Alibaba store rating {rating}",
+    "b2bNote": "B2B wholesale only",
+    "b2bNoteBody": "No online checkout. Add SKUs to the inquiry basket or describe OEM/ODM needs — we quote by email."
   },
   "footer": {
     "autoTranslated": "Auto-translated — contact us for details.",
@@ -121,7 +126,17 @@
     "factoryGallerySub": "Injection molding, assembly, and QC for auto body parts and modified lights."
   },
   "faq": {
-    "title": "FAQ"
+    "title": "FAQ",
+    "subtitle": "subtitle",
+    "q1": "q1",
+    "a1": "a1",
+    "q2": "q2",
+    "a2": "a2",
+    "q3": "q3",
+    "a3": "a3",
+    "q4": "q4",
+    "a4": "a4",
+    "contact": "contact"
   },
   "store": {
     "storeRating": "Store rating",
