@@ -26,8 +26,8 @@ export default async function ProductDetailPage({ params }: Props) {
   const hint = getPriceHint(product.sku)
 
   return (
-    <div className="bg-[#f5f5f5]">
-      <div className="mx-auto max-w-[1200px] px-4 py-8">
+    <div className="bg-surface-muted">
+      <div className="container-main py-8">
         <Breadcrumbs
           items={[
             { label: t('title'), href: '/products' },
@@ -38,33 +38,47 @@ export default async function ProductDetailPage({ params }: Props) {
           ]}
         />
 
-        <div className="mt-6 grid gap-8 rounded border border-zinc-200 bg-white p-6 lg:grid-cols-2">
+        {/* Product main section */}
+        <div className="mt-6 grid gap-8 rounded-xl border border-border-light bg-surface p-6 shadow-card lg:grid-cols-2">
           <ProductImage
             src={product.imageUrl}
             alt={product.imageAlt}
-            className="aspect-square w-full"
+            className="aspect-square w-full rounded-lg"
             sizes="(max-width:1024px) 100vw, 50vw"
             priority
           />
 
-          <div>
-            <h1 className="text-lg font-bold leading-snug text-zinc-900 md:text-xl">{product.title}</h1>
-            <p className="mt-2 font-mono text-sm text-zinc-500">{t('sku')}: {product.sku}</p>
-            <p className="mt-3 text-2xl font-bold text-[#ff6a00]">{hint.price}</p>
-            <p className="text-sm text-zinc-500">{hint.moq}</p>
-            {product.summary && <p className="mt-4 text-sm text-zinc-700">{product.summary}</p>}
-            {product.description && (
-              <div className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-zinc-600">{product.description}</div>
+          <div className="flex flex-col">
+            <h1 className="text-lg font-bold leading-snug text-text-primary md:text-xl">{product.title}</h1>
+            <p className="mt-2 font-mono text-sm text-text-tertiary">{t('sku')}: {product.sku}</p>
+
+            <div className="mt-4">
+              <p className="text-2xl font-bold text-brand">{hint.price}</p>
+              <p className="mt-0.5 text-sm text-text-tertiary">{hint.moq}</p>
+            </div>
+
+            {product.summary && (
+              <p className="mt-4 text-sm leading-relaxed text-text-secondary">{product.summary}</p>
             )}
-            <div className="mt-6 flex flex-wrap gap-3">
+            {product.description && (
+              <div className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-text-secondary">
+                {product.description}
+              </div>
+            )}
+
+            <div className="mt-auto flex flex-wrap gap-3 pt-6">
               <AddToInquiryButton sku={product.sku} title={product.title} />
-              <Link href="/inquiry" className="rounded border border-[#ff6a00] px-5 py-2.5 text-sm font-semibold text-[#ff6a00] hover:bg-orange-50">
+              <Link
+                href="/inquiry"
+                className="inline-flex items-center gap-2 rounded-lg border border-brand/30 bg-surface px-5 py-2.5 text-sm font-semibold text-brand transition-all hover:bg-brand/5 active:scale-[0.97]"
+              >
                 {tc('requestQuote')}
               </Link>
             </div>
           </div>
         </div>
 
+        {/* Specifications */}
         <div className="mt-6">
           <ProductSpecsTable
             specs={product.specs}
@@ -75,9 +89,10 @@ export default async function ProductDetailPage({ params }: Props) {
           />
         </div>
 
+        {/* Related products */}
         {related.length > 0 && (
-          <section className="mt-10 rounded border border-zinc-200 bg-white p-6">
-            <h2 className="text-lg font-bold text-zinc-900">{t('related')}</h2>
+          <section className="mt-10 rounded-xl border border-border-light bg-surface p-6 shadow-card">
+            <h2 className="text-lg font-bold text-text-primary">{t('related')}</h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((p) => (
                 <ProductCard key={p.id} product={p} />
@@ -86,9 +101,15 @@ export default async function ProductDetailPage({ params }: Props) {
           </section>
         )}
 
-        <p className="mt-8 text-center text-xs text-zinc-500">
+        {/* Footer link */}
+        <p className="mt-10 text-center text-xs text-text-muted">
           {tc('alibabaMore')}{' '}
-          <a href={company.alibabaStoreUrl} target="_blank" rel="noopener noreferrer" className="text-[#ff6a00] hover:underline">
+          <a
+            href={company.alibabaStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand transition-colors hover:text-brand-dark"
+          >
             {company.brandShort} on Alibaba
           </a>
         </p>

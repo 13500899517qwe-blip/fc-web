@@ -6,7 +6,7 @@ export async function TopBar() {
   const t = await getTranslations('topbar')
 
   return (
-    <div className="bg-weibo-bar text-zinc-300">
+    <div className="bg-surface-dark text-text-on-dark">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-2 px-4 py-2 text-xs">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           {company.phone && (

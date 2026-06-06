@@ -55,7 +55,7 @@ export default async function ProductsPage({ params, searchParams }: Props) {
         <CatalogEmpty variant={q ? 'search' : 'all'} />
       ) : (
         <>
-          <p className="mb-4 text-sm text-zinc-500">
+          <p className="mb-4 text-sm text-text-tertiary">
             {tc('resultsCount', { count: result.totalDocs })}
           </p>
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -64,22 +64,22 @@ export default async function ProductsPage({ params, searchParams }: Props) {
             ))}
           </div>
           {result.totalPages > 1 && (
-            <nav className="mt-10 flex justify-center gap-2">
+            <nav className="mt-10 flex items-center justify-center gap-3">
               {page > 1 && (
                 <Link
                   href={buildProductsHref({ brand, q, page: page - 1 })}
-                  className="rounded-lg border px-4 py-2 text-sm hover:bg-zinc-100"
+                  className="rounded-lg border border-border-light bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-all hover:border-brand/30 hover:text-brand"
                 >
                   {tc('prev')}
                 </Link>
               )}
-              <span className="px-4 py-2 text-sm text-zinc-600">
+              <span className="px-3 text-sm text-text-tertiary">
                 {page} / {result.totalPages}
               </span>
               {page < result.totalPages && (
                 <Link
                   href={buildProductsHref({ brand, q, page: page + 1 })}
-                  className="rounded-lg border px-4 py-2 text-sm hover:bg-zinc-100"
+                  className="rounded-lg border border-border-light bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-all hover:border-brand/30 hover:text-brand"
                 >
                   {tc('next')}
                 </Link>

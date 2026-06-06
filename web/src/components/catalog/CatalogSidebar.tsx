@@ -31,7 +31,7 @@ export function CatalogSidebar({
   return (
     <aside className="space-y-8">
       <div>
-        <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
           {t('byCategory')}
         </h2>
         <ul className="mt-3 space-y-1">
@@ -39,8 +39,8 @@ export function CatalogSidebar({
             <Link
               href={href({ categorySlug: undefined, brand: activeBrand })}
               className={cn(
-                'block rounded-md px-3 py-2 text-sm font-medium',
-                !activeCategory ? 'bg-brand-50 text-brand-dark' : 'text-zinc-700 hover:bg-zinc-100',
+                'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                !activeCategory ? 'bg-brand/10 text-brand-dark' : 'text-text-secondary hover:bg-surface-subtle',
               )}
             >
               {t('allProducts')}
@@ -51,25 +51,25 @@ export function CatalogSidebar({
               <Link
                 href={href({ categorySlug: l1.slug, brand: activeBrand })}
                 className={cn(
-                  'block rounded-md px-3 py-2 text-sm font-semibold',
+                  'block rounded-md px-3 py-2 text-sm font-semibold transition-colors',
                   activeCategory === l1.slug
-                    ? 'bg-brand-50 text-brand-dark'
-                    : 'text-zinc-800 hover:bg-zinc-100',
+                    ? 'bg-brand/10 text-brand-dark'
+                    : 'text-text-primary hover:bg-surface-subtle',
                 )}
               >
                 {l1.title}
               </Link>
               {l1.children.length > 0 && (
-                <ul className="ml-3 border-l border-zinc-200 pl-2">
+                <ul className="ml-3 border-l border-border-light pl-2">
                   {l1.children.map((l2) => (
                     <li key={l2.id}>
                       <Link
                         href={href({ categorySlug: l2.slug, brand: activeBrand })}
                         className={cn(
-                          'block rounded-md px-2 py-1.5 text-sm',
+                          'block rounded-md px-2 py-1.5 text-sm transition-colors',
                           activeCategory === l2.slug
                             ? 'font-medium text-brand-dark'
-                            : 'text-zinc-600 hover:text-brand',
+                            : 'text-text-tertiary hover:text-brand',
                         )}
                       >
                         {l2.title}
@@ -84,17 +84,17 @@ export function CatalogSidebar({
       </div>
 
       <div>
-        <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
           {t('byVehicle')}
         </h2>
         <div className="mt-3 flex flex-wrap gap-2">
           <Link
             href={href({ brand: undefined })}
             className={cn(
-              'rounded-full border px-3 py-1 text-xs font-medium',
+              'rounded-full border px-3 py-1 text-xs font-medium transition-colors',
               !activeBrand
-                ? 'border-zinc-400 bg-zinc-100 text-zinc-800'
-                : 'border-zinc-300 bg-white text-zinc-600 hover:border-brand',
+                ? 'border-text-tertiary bg-surface-subtle text-text-primary'
+                : 'border-border-light bg-surface text-text-tertiary hover:border-brand',
             )}
           >
             {t('allBrands')}
@@ -104,10 +104,10 @@ export function CatalogSidebar({
               key={brand}
               href={href({ brand: activeBrand === brand ? undefined : brand })}
               className={cn(
-                'rounded-full border px-3 py-1 text-xs font-medium transition',
+                'rounded-full border px-3 py-1 text-xs font-medium transition-colors',
                 activeBrand === brand
                   ? 'border-brand bg-brand text-white'
-                  : 'border-zinc-300 bg-white text-zinc-700 hover:border-brand',
+                  : 'border-border-light bg-surface text-text-secondary hover:border-brand',
               )}
             >
               {brand}

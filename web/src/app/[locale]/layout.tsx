@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { hasLocale } from 'next-intl'
 import { routing, rtlLocales, type AppLocale } from '@/i18n/routing'
-import { AlibabaStoreHeader } from '@/components/layout/AlibabaStoreHeader'
-import { AlibabaStoreNav } from '@/components/layout/AlibabaStoreNav'
+import { TopBar } from '@/components/layout/TopBar'
+import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton'
 import { InquiryBasketProvider } from '@/components/inquiry/InquiryBasketProvider'
@@ -55,8 +55,8 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="min-h-full flex flex-col bg-[#f5f5f5] text-zinc-900">
         <NextIntlClientProvider messages={messages}>
           <InquiryBasketProvider>
-            <AlibabaStoreHeader />
-            <AlibabaStoreNav />
+            <TopBar />
+            <SiteHeader categoryTree={categoryTree} />
             <main className="flex-1">{children}</main>
             <SiteFooter categoryTree={categoryTree} />
             <WhatsAppButton />
