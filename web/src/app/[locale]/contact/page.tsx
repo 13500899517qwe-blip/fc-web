@@ -4,7 +4,9 @@ import { useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { TurnstileWidget } from '@/components/inquiry/TurnstileWidget'
 import { company } from '@/lib/company'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { alibabaStore, alibabaCompany } from '@/lib/alibaba-store-data'
+import { Mail, MapPin, Phone, Clock, ShieldCheck, MessageSquare } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 
 export default function ContactPage() {
   const t = useTranslations('contact')
@@ -25,52 +27,239 @@ export default function ContactPage() {
       })
       if (!res.ok) throw new Error('failed')
       setStatus('success')
+      setForm({ name: '', email: '', company: '', phone: '', country: '', message: '' })
     } catch {
       setStatus('error')
     }
   }
 
+  const contactInfo = [
+    { icon: MapPin, label: 'Address', value: company.location },
+    ...(company.phone ? [{ icon: Phone, label: 'Phone', value: company.phone, href: `tel:${company.phone}` as const }] : []),
+    ...(company.contactEmail && company.contactEmail !== 'Contact via inquiry form'
+      ? [{ icon: Mail, label: 'Email', value: company.contactEmail, href: `mailto:${company.contactEmail}` as const }]
+      : []),
+    { icon: Clock, label: 'Response Time', value: alibabaStore.metrics.responseTime },
+  ]
+
   return (
-    <div className="bg-[#f5f5f5]">
-      <div className="border-b border-zinc-200 bg-white py-8">
-        <div className="mx-auto max-w-[1200px] px-4">
-          <h1 className="text-xl font-bold text-zinc-900">{t('title')}</h1>
-          <p className="mt-1 text-sm text-zinc-600">{company.legalName}</p>
+    <div className="bg-surface-muted">
+      {/* Header */}
+      <div className="border-b border-border-light bg-surface py-10">
+        <div className="container-main">
+          <span className="inline-block rounded-full bg-brand/10 px-3 py-0.5 text-xs font-semibold uppercase tracking-wider text-brand">
+            {t('title')}
+          </span>
+          <h1 className="mt-3 text-2xl font-bold text-text-primary md:text-3xl">
+            Get in Touch With Us
+          </h1>
+          <p className="mt-2 text-sm text-text-secondary">
+            Send us your requirements — we typically respond within {alibabaStore.metrics.responseTime}
+          </p>
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-[1200px] gap-8 px-4 py-10 lg:grid-cols-3">
-        <aside className="rounded border border-zinc-200 bg-white p-6 lg:col-span-1">
-          <h2 className="font-bold text-zinc-900">{t('reachUs')}</h2>
-          <ul className="mt-4 space-y-3 text-sm text-zinc-700">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 text-[#ff6a00]" />{company.location}</li>
-            {company.phone && (
-              <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 text-[#ff6a00]" /><a href={`tel:${company.phone}`}>{company.phone}</a></li>
-            )}
-            {company.contactEmail && company.contactEmail !== 'Contact via inquiry form' && (
-              <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 text-[#ff6a00]" /><a href={`mailto:${company.contactEmail}`}>{company.contactEmail}</a></li>
-            )}
-          </ul>
-          <a href={company.alibabaStoreUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block rounded bg-[#ff6a00] px-5 py-2 text-xs font-semibold text-white hover:bg-[#e85f00]">
-            {t('alibaba')}
-          </a>
-        </aside>
+      <div className="container-main py-10">
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Left sidebar - Contact info + Trust signals */}
+          <aside className="space-y-6 lg:col-span-1">
+            {/* Contact cards */}
+            <div className="space-y-3">
+              {contactInfo.map(({ icon: Icon, label, value, href }) => (
+                <div
+                  key={label}
+                  className="flex items-start gap-4 rounded-xl border border-border-light bg-surface p-4 shadow-card"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium uppercase tracking-wide text-text-tertiary">{label}</p>
+                    {href ? (
+                      <a href={href} className="mt-0.5 block text-sm font-semibold text-text-primary transition-colors hover:text-brand">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="mt-0.5 text-sm font-semibold text-text-primary">{value}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
 
-        <form onSubmit={submit} className="space-y-4 rounded border border-zinc-200 bg-white p-6 lg:col-span-2">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <input required placeholder={ti('name')} className="w-full rounded border px-3 py-2.5" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
-            <input required type="email" placeholder={ti('email')} className="w-full rounded border px-3 py-2.5" value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
-            <input placeholder={ti('phone')} className="w-full rounded border px-3 py-2.5" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
-            <input placeholder={ti('country')} className="w-full rounded border px-3 py-2.5" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))} />
+            {/* Trust signals */}
+            <div className="rounded-xl border border-border-light bg-surface p-5 shadow-card">
+              <h3 className="flex items-center gap-2 text-sm font-bold text-text-primary">
+                <ShieldCheck className="h-4 w-4 text-success" />
+                Why Choose Us
+              </h3>
+              <ul className="mt-4 space-y-2">
+                {alibabaStore.highlights.slice(0, 4).map((h) => (
+                  <li key={h} className="flex items-start gap-2 text-xs text-text-secondary">
+                    <span className="mt-0.5 text-success">✓</span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {company.certifications.map((cert) => (
+                  <span key={cert} className="rounded-full bg-surface-subtle px-2.5 py-1 text-[10px] font-semibold text-text-tertiary">
+                    {cert}
+                  </span>
+                ))}
+              </div>
+              <Link
+                href="/about"
+                className="mt-4 inline-block text-xs font-semibold text-brand transition-colors hover:text-brand-dark"
+              >
+                {t('alibaba')} &rarr;
+              </Link>
+            </div>
+
+            {/* Quick links */}
+            <div className="rounded-xl border border-border-light bg-surface p-5 shadow-card">
+              <h3 className="flex items-center gap-2 text-sm font-bold text-text-primary">
+                <MessageSquare className="h-4 w-4 text-brand" />
+                Quick Links
+              </h3>
+              <div className="mt-3 space-y-1.5 text-sm">
+                <Link href="/products" className="block text-text-secondary transition-colors hover:text-brand">Browse Products</Link>
+                <Link href="/faq" className="block text-text-secondary transition-colors hover:text-brand">FAQ</Link>
+                <a href={company.alibabaStoreUrl} target="_blank" rel="noopener noreferrer" className="block text-text-secondary transition-colors hover:text-brand">
+                  {company.brandShort} on Alibaba
+                </a>
+              </div>
+            </div>
+          </aside>
+
+          {/* Form */}
+          <div className="lg:col-span-2">
+            <div className="rounded-xl border border-border-light bg-surface p-6 shadow-card md:p-8">
+              <h2 className="text-lg font-bold text-text-primary">{t('reachUs')}</h2>
+              <p className="mt-1 text-sm text-text-secondary">{t('response')}</p>
+
+              <form onSubmit={submit} className="mt-6 space-y-5">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-sm font-medium text-text-primary">
+                      {ti('name')} <span className="text-error">*</span>
+                    </label>
+                    <input
+                      required
+                      placeholder="John Smith"
+                      className="mt-1.5 w-full rounded-lg border border-border-light bg-surface-muted px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-all focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                      value={form.name}
+                      onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-text-primary">
+                      {ti('email')} <span className="text-error">*</span>
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      placeholder="john@company.com"
+                      className="mt-1.5 w-full rounded-lg border border-border-light bg-surface-muted px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-all focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                      value={form.email}
+                      onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-text-primary">{ti('company')}</label>
+                    <input
+                      placeholder="Your Company Ltd."
+                      className="mt-1.5 w-full rounded-lg border border-border-light bg-surface-muted px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-all focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                      value={form.company}
+                      onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-text-primary">{ti('phone')}</label>
+                    <input
+                      placeholder="+86 123 4567 8900"
+                      className="mt-1.5 w-full rounded-lg border border-border-light bg-surface-muted px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-all focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                      value={form.phone}
+                      onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="block text-sm font-medium text-text-primary">{ti('country')}</label>
+                    <input
+                      placeholder="e.g. United States"
+                      className="mt-1.5 w-full rounded-lg border border-border-light bg-surface-muted px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-all focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                      value={form.country}
+                      onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-text-primary">
+                    {ti('message')} <span className="text-error">*</span>
+                  </label>
+                  <textarea
+                    required
+                    placeholder="Tell us about the parts you need — include vehicle model, year, and quantity..."
+                    className="mt-1.5 w-full rounded-lg border border-border-light bg-surface-muted px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-all focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                  />
+                </div>
+
+                <TurnstileWidget onVerify={setToken} onExpire={() => setToken(null)} />
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand-dark hover:shadow-xl active:scale-[0.97] disabled:opacity-50"
+                >
+                  {status === 'loading' ? (
+                    <>Sending...</>
+                  ) : (
+                    <>{t('submit')} <Mail className="h-4 w-4" /></>
+                  )}
+                </button>
+
+                {status === 'success' && (
+                  <div className="rounded-lg bg-success/10 p-4 text-sm font-medium text-success">
+                    ✓ {ti('success')}
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="rounded-lg bg-error/10 p-4 text-sm font-medium text-error">
+                    ✗ {ti('error')}
+                  </div>
+                )}
+              </form>
+            </div>
           </div>
-          <textarea required placeholder={ti('message')} className="w-full rounded border px-3 py-2.5" rows={5} value={form.message} onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))} />
-          <TurnstileWidget onVerify={setToken} onExpire={() => setToken(null)} />
-          <button type="submit" disabled={status === 'loading'} className="rounded bg-[#ff6a00] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#e85f00] disabled:opacity-60">
-            {t('submit')}
-          </button>
-          {status === 'success' && <p className="text-green-700">{ti('success')}</p>}
-          {status === 'error' && <p className="text-red-700">{ti('error')}</p>}
-        </form>
+        </div>
+      </div>
+
+      {/* Bottom trust bar */}
+      <div className="border-t border-border-light bg-surface py-8">
+        <div className="container-main">
+          <div className="grid grid-cols-2 gap-4 text-center md:grid-cols-4">
+            <div>
+              <p className="text-xl font-bold text-text-primary">{alibabaStore.metrics.storeRating}</p>
+              <p className="text-xs text-text-tertiary">{t('rating')}</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-text-primary">{alibabaStore.metrics.onTimeDelivery}</p>
+              <p className="text-xs text-text-tertiary">{t('response')}</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-text-primary">{alibabaStore.metrics.responseTime}</p>
+              <p className="text-xs text-text-tertiary">{t('b2bNote')}</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-text-primary">{company.certifications.length}</p>
+              <p className="text-xs text-text-tertiary">Certifications</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

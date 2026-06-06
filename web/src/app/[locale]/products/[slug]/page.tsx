@@ -6,6 +6,7 @@ import { ProductImage } from '@/components/catalog/ProductImage'
 import { ProductCard } from '@/components/catalog/ProductCard'
 import { ProductSpecsTable } from '@/components/catalog/ProductSpecsTable'
 import { Breadcrumbs } from '@/components/catalog/Breadcrumbs'
+import { QuickQuoteForm } from '@/components/catalog/QuickQuoteForm'
 import { AddToInquiryButton } from '@/components/inquiry/AddToInquiryButton'
 import { getProductBySlug, findRelatedProducts } from '@/lib/catalog-queries'
 import { company } from '@/lib/company'
@@ -78,15 +79,20 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Specifications */}
-        <div className="mt-6">
-          <ProductSpecsTable
-            specs={product.specs}
-            partNumber={product.partNumber}
-            vehicleBrands={product.vehicleBrands}
-            sku={product.sku}
-            labels={{ specs: t('specs'), partNumber: t('partNumber'), brands: t('brands'), sku: t('sku') }}
-          />
+        {/* Specs + Quick Quote side by side */}
+        <div className="mt-6 grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <ProductSpecsTable
+              specs={product.specs}
+              partNumber={product.partNumber}
+              vehicleBrands={product.vehicleBrands}
+              sku={product.sku}
+              labels={{ specs: t('specs'), partNumber: t('partNumber'), brands: t('brands'), sku: t('sku') }}
+            />
+          </div>
+          <div>
+            <QuickQuoteForm sku={product.sku} title={product.title} />
+          </div>
         </div>
 
         {/* Related products */}

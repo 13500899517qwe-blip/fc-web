@@ -4,36 +4,36 @@ import { cn } from '@/lib/cn'
 import { company } from '@/lib/company'
 
 type Props = {
-  /** nav = Weibo-style large bar logo; compact = header strip */
   variant?: 'nav' | 'compact' | 'footer'
   className?: string
 }
 
 const sizes = {
-  nav: { icon: 'h-[60px] w-[60px]', wordmark: 'h-12 w-auto', gap: 'gap-3.5' },
-  compact: { icon: 'h-11 w-11', wordmark: 'h-9 w-auto', gap: 'gap-2.5' },
-  footer: { icon: 'h-10 w-10', wordmark: 'h-8 w-auto', gap: 'gap-2' },
+  nav: { width: 180, height: 45, iconSize: 'h-10 w-10' },
+  compact: { width: 150, height: 38, iconSize: 'h-9 w-9' },
+  footer: { width: 160, height: 40, iconSize: 'h-9 w-9' },
 } as const
 
 export function BrandLogo({ variant = 'nav', className }: Props) {
   const s = sizes[variant]
 
+  // Use SVG logo for nav/footer, keep PNG icon as fallback
   return (
-    <Link href="/" className={cn('group flex shrink-0 items-center', s.gap, className)}>
+    <Link href="/" className={cn('group flex shrink-0 items-center gap-3', className)}>
       <Image
-        src="/logo-icon.png"
+        src="/logo-icon.svg"
         alt=""
-        width={120}
-        height={120}
-        className={cn(s.icon, 'object-contain transition group-hover:opacity-90')}
+        width={48}
+        height={48}
+        className={cn(s.iconSize, 'object-contain')}
         priority={variant === 'nav'}
       />
       <Image
-        src="/logo-wordmark.png"
+        src="/logo.svg"
         alt={company.brandName}
-        width={280}
-        height={100}
-        className={cn(s.wordmark, 'object-contain object-left', variant === 'compact' && 'hidden min-[480px]:block')}
+        width={s.width}
+        height={s.height}
+        className="object-contain object-left"
         priority={variant === 'nav'}
       />
     </Link>
