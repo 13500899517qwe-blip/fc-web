@@ -18,7 +18,7 @@ export async function AlibabaProductGroups() {
             Shop by <span className="text-brand">Vehicle Brand</span>
           </h2>
           <p className="mt-2 text-sm text-text-secondary">
-            Quality auto body parts for 98% of vehicle models worldwide
+            {t('shopByBrandSubtitle') || 'Quality auto body parts for 98% of vehicle models worldwide'}
           </p>
         </div>
 

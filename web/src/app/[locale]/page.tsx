@@ -107,11 +107,10 @@ export default async function HomePage({ params }: Props) {
       <section className="bg-surface-dark py-16">
         <div className="container-main text-center">
           <h2 className="text-2xl font-bold text-white md:text-3xl">
-            Ready to Source Auto Parts?
+            {t('ctaTitle')}
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-text-on-dark/70">
-            Send us your requirements — we&apos;ll provide a formal quote within 4 hours.
-            OEM, ODM, and customized solutions available.
+            {t('ctaDesc')}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link

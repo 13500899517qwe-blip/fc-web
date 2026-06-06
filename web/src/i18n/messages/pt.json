@@ -126,17 +126,30 @@
     "factoryGallerySub": "Moldagem por injeção, montagem e controle de qualidade para peças de carroceria e luzes modificadas."
   },
   "faq": {
-    "title": "FAQ",
-    "subtitle": "subtitle",
-    "q1": "q1",
-    "a1": "a1",
-    "q2": "q2",
-    "a2": "a2",
-    "q3": "q3",
-    "a3": "a3",
-    "q4": "q4",
-    "a4": "a4",
-    "contact": "contact"
+    "title": "Perguntas Frequentes",
+    "subtitle": "Encontre respostas para as perguntas mais comuns sobre pedidos, produtos e envio.",
+    "contact": "Ainda tem dúvidas?",
+    "contactDesc": "Não encontrou o que procura? Nossa equipe normalmente responde em até 4 horas.",
+    "q1": "Qual é a quantidade mínima de pedido (MOQ)?",
+    "a1": "Nosso MOQ padrão é de 50 conjuntos por SKU para produtos padrão. Para pedidos personalizados/OEM, o MOQ é negociável com base na complexidade. Pedidos de amostra são sempre bem-vindos com apenas 1 a 5 peças.",
+    "q2": "Vocês fornecem amostras? Quanto tempo leva?",
+    "a2": "Sim, fornecemos amostras. Amostras em estoque são enviadas em 3 a 5 dias úteis. Amostras personalizadas (baseadas em desenhos) geralmente levam de 15 a 20 dias. O custo de envio da amostra é por conta do comprador, reembolsável em pedidos em grande quantidade.",
+    "q3": "Vocês podem fazer OEM/ODM? E embalagens personalizadas?",
+    "a3": "Com certeza. Temos 5 engenheiros de P&D e lançamos mais de 300 novos produtos por ano. Apoiamos OEM (sua marca, nosso design), ODM (seu design, nossa produção), embalagens personalizadas e até codesenvolvimento de novos produtos.",
+    "q4": "Quais são suas certificações de qualidade?",
+    "a4": "Somos certificados com IATF16949, ISO9001, CCC e E-MARK. Temos 9 instrumentos de teste e realizamos controle de qualidade completo — rastreabilidade de matérias-primas, inspeção em processo e teste de produtos acabados.",
+    "q5": "Quais marcas de veículos vocês cobrem?",
+    "a5": "Nossos produtos cobrem 98% dos modelos de veículos globalmente, incluindo Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz, Honda, BMW, Ford, Mitsubishi, Mazda, Kia e mais. Entre em contato conosco com seu veículo alvo para confirmação de ajuste.",
+    "q6": "Quais condições de pagamento vocês aceitam?",
+    "a6": "Aceitamos T/T (transferência bancária), L/C, Western Union e pedidos com Garantia Comercial através do Alibaba.com. As condições de pagamento padrão são 30% de depósito, 70% antes do envio para novos clientes.",
+    "q7": "Qual é o prazo de produção?",
+    "a7": "Produtos padrão: 25 a 35 dias após confirmação do depósito. Pedidos personalizados/OEM: 35 a 50 dias, dependendo da complexidade. Enviamos via marítimo, aéreo ou expresso (DHL/UPS/FedEx) de acordo com sua preferência.",
+    "q8": "Qual é a política de pós-venda?",
+    "a8": "Oferecemos garantia de 12 meses em todos os produtos contra defeitos de fabricação. Para problemas de qualidade confirmados por nossa equipe, fornecemos substituição gratuita ou crédito para pedidos futuros. Nosso tempo de resposta é ≤4 horas.",
+    "q9": "Como faço para obter um orçamento?",
+    "a9": "Basta adicionar produtos ao seu carrinho de consulta em nosso site e enviar o formulário com seus dados. Alternativamente, entre em contato conosco diretamente através de nossa loja Alibaba ou envie um e-mail. Normalmente respondemos em até 4 horas.",
+    "q10": "Vocês enviam para o meu país?",
+    "a10": "Sim, exportamos para todo o mundo. Nossos principais mercados são América do Norte (40%), Europa Ocidental (30%), Oriente Médio (20%) e Sudeste Asiático (10%). Temos experiência com envio internacional, documentação alfandegária e Incoterms."
   },
   "store": {
     "storeRating": "Avaliação da loja",
@@ -162,8 +175,33 @@
     "quickNav": "Navegação rápida",
     "featuredProducts": "Produtos em destaque",
     "heroBadge": "Fabricante Personalizado · Certificado IATF16949",
-    "heroHeadline1": "Peças de Carroceria Premium e",
+    "heroHeadline1": "Peças Automotivas Premium e",
     "heroHeadline2": "Fabricante de Iluminação Modificada",
-    "heroSubtitle": "Fornecedor OEM/ODM de para-choques, capôs, para-lamas, portas, tampas traseiras e lanternas traseiras LED. Cobertura de 98% dos modelos de veículos. Certificado IATF16949 e ISO9001."
+    "heroSubtitle": "Fornecedor OEM/ODM de para-choques, capôs, para-lamas, portas, tampas traseiras e lanternas traseiras LED. Cobertura de 98% dos modelos de veículos. Certificado IATF16949 e ISO9001.",
+    "companyIntro": "Introdução da empresa",
+    "shopByBrandSubtitle": "Peças de carroceria de qualidade para 98% dos modelos de veículos em todo o mundo",
+    "ctaTitle": "Pronto para adquirir peças automotivas?",
+    "ctaDesc": "Envie-nos suas necessidades — forneceremos um orçamento formal em até 4 horas. Soluções OEM, ODM e personalizadas disponíveis.",
+    "contactDesc": "Envie-nos suas necessidades — normalmente respondemos em até 4 horas."
+  },
+  "whyChooseUs": {
+    "title1": "Qualidade Certificada",
+    "desc1": "Certificações IATF16949, ISO9001, CCC e E-MARK — projetadas com precisão para mercados globais.",
+    "title2": "Fábrica de 23.575㎡",
+    "desc2": "30 máquinas de moldagem por injeção, 9 linhas de montagem automatizadas em Danyang, Jiangsu.",
+    "title3": "Expertise em OEM / ODM",
+    "desc3": "Suporte para personalização baseada em desenhos, processamento de amostras e codesenvolvimento de novos produtos.",
+    "title4": "Cobertura Completa de Veículos",
+    "desc4": "Produtos que cobrem 98% dos modelos de veículos para Toyota, Jeep, Nissan, Isuzu, BMW e mais.",
+    "title5": "Histórico Comprovado",
+    "desc5": "Avaliação da loja 4,8/5 · 92,9% de entregas no prazo · #7 resposta mais rápida em Portas de Carro.",
+    "title6": "Controle de Qualidade Completo",
+    "desc6": "Rastreabilidade de matérias-primas, inspeção em processo, teste de produtos acabados com 9 instrumentos."
+  },
+  "factory": {
+    "companyIntro": "A Changzhou Fengcheng Import and Export Co., Ltd. é uma fabricante personalizada de peças automotivas de reposição e iluminação modificada. Nossa gama de produtos abrange para-choques, kits de carroceria, capôs, grades, para-lamas, portas, tampas traseiras, faróis e lanternas traseiras para as principais marcas de veículos, incluindo Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz e mais. Apoiamos cooperação OEM, ODM e de agência, com personalização menor, personalização baseada em desenhos, inspeção de produtos acabados e rastreabilidade de matérias-primas. A avaliação de nossa loja Alibaba é 4,8/5 com 92,9% de entregas no prazo.",
+    "shopByBrandSub": "Peças automotivas de qualidade para 98% dos modelos de veículos em todo o mundo",
+    "ctaTitle": "Pronto para Comprar Peças Automotivas?",
+    "ctaDesc": "Envie-nos seus requisitos — forneceremos um orçamento formal em até 4 horas. Soluções OEM, ODM e personalizadas disponíveis."
   }
 }

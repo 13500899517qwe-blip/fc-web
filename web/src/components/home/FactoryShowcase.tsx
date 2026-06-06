@@ -8,6 +8,7 @@ import { Factory, Users, MapPin, Wrench } from 'lucide-react'
 export async function FactoryShowcase() {
   const t = await getTranslations('about')
   const ts = await getTranslations('store')
+  const f = await getTranslations('factory')
 
   const facts = [
     { icon: Factory, label: ts('founded'), value: alibabaStore.companyFacts.founded },
@@ -68,7 +69,7 @@ export async function FactoryShowcase() {
             <h2 className="mt-4 text-2xl font-bold text-text-primary md:text-3xl">
               {company.legalName}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-text-secondary">{company.aboutEn}</p>
+            <p className="mt-4 text-sm leading-relaxed text-text-secondary">{f('companyIntro')}</p>
 
             {/* Key facts */}
             <dl className="mt-6 grid grid-cols-2 gap-4">

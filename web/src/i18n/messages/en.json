@@ -33,7 +33,11 @@
     "heroBadge": "Custom Manufacturer · IATF16949 Certified",
     "heroHeadline1": "Premium Auto Body Parts &",
     "heroHeadline2": "Modified Lighting Manufacturer",
-    "heroSubtitle": "OEM/ODM supplier of bumpers, hoods, fenders, doors, tailgates, and LED tail lights. 98% vehicle model coverage. IATF16949 & ISO9001 certified."
+    "heroSubtitle": "OEM/ODM supplier of bumpers, hoods, fenders, doors, tailgates, and LED tail lights. 98% vehicle model coverage. IATF16949 & ISO9001 certified.",
+    "shopByBrandSubtitle": "Quality auto body parts for 98% of vehicle models worldwide",
+    "ctaTitle": "Ready to Source Auto Parts?",
+    "ctaDesc": "Send us your requirements — we will provide a formal quote within 4 hours. OEM, ODM, and customized solutions available.",
+    "contactDesc": "Send us your requirements — we typically respond within 4 hours."
   },
   "nav": {
     "home": "Home",
@@ -184,6 +188,47 @@
   "faq": {
     "title": "FAQ",
     "subtitle": "Find answers to the most common questions about ordering, products, and shipping.",
-    "contact": "Still have questions?"
+    "contact": "Still have questions?",
+    "contactDesc": "Can not find what you are looking for? Our team typically responds within 4 hours.",
+    "q1": "What is your minimum order quantity (MOQ)?",
+    "a1": "Our standard MOQ is 50 sets per SKU for standard products. For customized/OEM orders, MOQ is negotiable based on the complexity. Sample orders are always welcome with just 1-5 pieces.",
+    "q2": "Do you provide samples? How long does it take?",
+    "a2": "Yes, we provide samples. In-stock samples ship within 3-5 business days. Custom samples (drawing-based) typically take 15-20 days. Sample shipping cost is borne by the buyer, refundable upon bulk orders.",
+    "q3": "Can you do OEM/ODM? What about custom packaging?",
+    "a3": "Absolutely. We have 5 R&D engineers and launch 300+ new products per year. We support OEM (your brand, our design), ODM (your design, our production), custom packaging, and even co-development of new products.",
+    "q4": "What are your quality certifications?",
+    "a4": "We are certified with IATF16949, ISO9001, CCC, and E-MARK. We have 9 testing instruments and perform end-to-end QC — raw material traceability, in-process inspection, and finished product testing.",
+    "q5": "Which vehicle brands do you cover?",
+    "a5": "Our products cover 98% of vehicle models globally, including Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz, Honda, BMW, Ford, Mitsubishi, Mazda, Kia, and more. Contact us with your target vehicle for fitment confirmation.",
+    "q6": "What payment terms do you accept?",
+    "a6": "We accept T/T (bank transfer), L/C, Western Union, and Trade Assurance orders through Alibaba.com. Standard payment terms are 30% deposit, 70% before shipment for new customers.",
+    "q7": "How long is the production lead time?",
+    "a7": "Standard products: 25-35 days after deposit confirmation. Custom/OEM orders: 35-50 days depending on complexity. We ship via sea, air, or express (DHL/UPS/FedEx) based on your preference.",
+    "q8": "What is your after-sales policy?",
+    "a8": "We offer a 12-month warranty on all products against manufacturing defects. For quality issues confirmed by our team, we provide free replacement or credit for future orders. Our response time is ≤4 hours.",
+    "q9": "How do I get a quote?",
+    "a9": "Simply add products to your inquiry basket on our website and submit the form with your details. Alternatively, contact us directly through our Alibaba store or send an email. We typically respond within 4 hours.",
+    "q10": "Do you ship to my country?",
+    "a10": "Yes, we export worldwide. Our main markets are North America (40%), Western Europe (30%), Mid East (20%), and Southeast Asia (10%). We have experience with international shipping, customs documentation, and Incoterms."
+  },
+  "whyChooseUs": {
+    "title1": "Certified Quality",
+    "desc1": "IATF16949, ISO9001, CCC & E-MARK certified — precision-engineered for global markets.",
+    "title2": "23,575㎡ Factory",
+    "desc2": "30 injection molding machines, 9 automated assembly lines in Danyang, Jiangsu.",
+    "title3": "OEM / ODM Expertise",
+    "desc3": "Support drawing-based customization, sample processing, and new product co-development.",
+    "title4": "Full-Vehicle Coverage",
+    "desc4": "Products covering 98% of vehicle models for Toyota, Jeep, Nissan, Isuzu, BMW, and more.",
+    "title5": "Proven Track Record",
+    "desc5": "4.8/5 store rating · 92.9% on-time delivery · #7 fastest response in Car Doors.",
+    "title6": "End-to-End QC",
+    "desc6": "Raw material traceability, in-process inspection, finished product testing with 9 instruments."
+  },
+  "factory": {
+    "companyIntro": "Changzhou Fengcheng Import and Export Co., Ltd. is a custom manufacturer of aftermarket auto body parts and modified lighting. Our product range covers bumpers, body kits, hoods, grilles, fenders, doors, tailgates, headlights, and tail lights for major vehicle brands including Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz, and more. We support OEM, ODM, and agency cooperation, with minor customization, drawing-based customization, finished product inspection, and raw material traceability. Our Alibaba store rating is 4.8/5 with 92.9% on-time delivery.",
+    "shopByBrandSub": "Quality auto body parts for 98% of vehicle models worldwide",
+    "ctaTitle": "Ready to Source Auto Parts?",
+    "ctaDesc": "Send us your requirements — we will provide a formal quote within 4 hours. OEM, ODM, and customized solutions available."
   }
 }
