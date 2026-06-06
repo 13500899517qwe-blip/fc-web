@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import { CheckCircle, Factory, Shield, Award, Cog, TrendingUp } from 'lucide-react'
 import { company } from '@/lib/company'
-import { alibabaStore, alibabaCompany } from '@/lib/alibaba-store-data'
+import { alibabaStore } from '@/lib/alibaba-store-data'
 
 const highlights = [
   {
