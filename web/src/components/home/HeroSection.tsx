@@ -53,7 +53,7 @@ export function HeroSection() {
             {/* Badge */}
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-medium text-brand">
               <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              {company.businessType} · {alibabaStore.badges[0]}
+              {company.businessType} · IATF16949 Certified
             </div>
 
             {/* Headline */}
