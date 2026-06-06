@@ -108,9 +108,43 @@
     "companyLinks": "Company"
   },
   "about": {
-    "title": "About Fengcheng"
+    "title": "About Fengcheng",
+    "floorspace": "Factory floorspace",
+    "employees": "Employees",
+    "machines": "Production machines",
+    "output": "Annual output",
+    "rating": "Store rating",
+    "delivery": "On-time delivery",
+    "categories": "Main product lines",
+    "markets": "Export markets",
+    "factoryGallery": "Factory & production",
+    "factoryGallerySub": "Injection molding, assembly, and QC for auto body parts and modified lights."
   },
   "faq": {
     "title": "FAQ"
+  },
+  "store": {
+    "storeRating": "Store rating",
+    "onTimeDelivery": "On-time delivery rate",
+    "responseTime": "Response time",
+    "floorspace": "Floorspace",
+    "onlineRevenue": "Online revenue",
+    "mainCategories": "Main categories",
+    "contactSupplier": "Contact supplier",
+    "chatNow": "Send inquiry",
+    "companyProfile": "Company profile",
+    "contacts": "Contacts",
+    "seeAllCategories": "See all categories",
+    "viewAllProducts": "View all products",
+    "companyIntroduction": "Company introduction",
+    "founded": "Year established",
+    "employees": "Employees",
+    "mainMarkets": "Main markets",
+    "mainProducts": "Main products",
+    "learnMoreAboutUs": "Learn more about us",
+    "visitAlibabaStore": "Visit our Alibaba store",
+    "productCategory": "Product category",
+    "quickNav": "Quick navigation",
+    "featuredProducts": "Featured products"
   }
 }
