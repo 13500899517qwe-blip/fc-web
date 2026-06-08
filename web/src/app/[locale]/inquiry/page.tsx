@@ -37,7 +37,8 @@ export default function InquiryPage() {
       clear()
       setForm({ name: '', email: '', company: '', phone: '', country: '', message: '' })
       setToken(null)
-    } catch {
+    } catch (e) {
+      console.error('[InquiryPage] Submit failed:', e)
       setStatus('error')
     }
   }

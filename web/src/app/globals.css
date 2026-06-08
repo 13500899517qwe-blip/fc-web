@@ -2,15 +2,15 @@
 
 /* ─── Design Tokens ─────────────────────────────────────── */
 @theme {
-  /* Brand palette — industrial warm orange */
-  --color-brand: #ff6a00;
-  --color-brand-light: #ff8533;
-  --color-brand-dark: #cc5500;
+  /* Brand palette — industrial rust copper (automotive B2B) */
+  --color-brand: #d4541e;
+  --color-brand-light: #e86a30;
+  --color-brand-dark: #b03e12;
 
   /* Surface / background layers */
   --color-surface: #ffffff;
-  --color-surface-muted: #f8fafc;
-  --color-surface-subtle: #f1f5f9;
+  --color-surface-muted: #f4f6f9;
+  --color-surface-subtle: #edf0f5;
   --color-surface-dark: #0f172a;
   --color-surface-dark-muted: #1e293b;
 

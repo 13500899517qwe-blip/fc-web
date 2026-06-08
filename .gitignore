@@ -37,3 +37,9 @@ pnpm-debug.log*
 # Misc
 *.tsbuildinfo
 next-env.d.ts
+
+# Dev artifacts
+.firecrawl/
+cursor-dev-brief.md
+外贸站竞品分析报告.md
+*.md

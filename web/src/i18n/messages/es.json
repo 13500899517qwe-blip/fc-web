@@ -11,6 +11,7 @@
     "home": "Inicio",
     "products": "Productos",
     "about": "Acerca de",
+    "blog": "Blog",
     "faq": "Preguntas frecuentes",
     "contact": "Contacto",
     "inquiry": "Canasta de consultas",
@@ -197,6 +198,12 @@
     "desc5": "Calificación de la tienda 4.8/5 · 92.9% de entregas a tiempo · #7 respuesta más rápida en Puertas de Automóviles.",
     "title6": "Control de Calidad Integral",
     "desc6": "Trazabilidad de materias primas, inspección durante el proceso, pruebas de productos terminados con 9 instrumentos."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Información del sector, guías de productos y consejos de abastecimiento para piezas de carrocería e iluminación modificada.",
+    "readMore": "Leer más",
+    "by": "Por Fengcheng Auto Parts"
   },
   "factory": {
     "companyIntro": "Changzhou Fengcheng Import and Export Co., Ltd. es un fabricante personalizado de piezas de carrocería de posventa y luces modificadas. Nuestra gama de productos cubre parachoques, kits de carrocería, capós, rejillas, guardabarros, puertas, portones traseros, faros delanteros y luces traseras para las principales marcas de vehículos, incluyendo Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz y más. Apoyamos OEM, ODM y cooperación de agencia, con personalización menor, personalización basada en planos, inspección de productos terminados y trazabilidad de materias primas. La calificación de nuestra tienda en Alibaba es 4.8/5 con un 92.9% de entregas a tiempo.",

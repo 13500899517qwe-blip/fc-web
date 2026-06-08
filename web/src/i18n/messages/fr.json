@@ -11,6 +11,7 @@
     "home": "Accueil",
     "products": "Produits",
     "about": "À propos",
+    "blog": "Blog",
     "faq": "FAQ",
     "contact": "Contact",
     "inquiry": "Panier de demande",
@@ -197,6 +198,12 @@
     "desc5": "Note de 4,8/5 · 92,9 % de livraison à temps · Réponse la plus rapide n°7 dans la catégorie Portes de voiture.",
     "title6": "Contrôle qualité de bout en bout",
     "desc6": "Traçabilité des matières premières, inspection en cours de fabrication, tests des produits finis avec 9 instruments."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Informations sectorielles, guides de produits et conseils d'approvisionnement pour les pièces de carrosserie et l'éclairage modifié.",
+    "readMore": "Lire la suite",
+    "by": "Par Fengcheng Pièces Auto"
   },
   "factory": {
     "companyIntro": "Changzhou Fengcheng Import and Export Co., Ltd. est un fabricant sur mesure de pièces de carrosserie de rechange et d'éclairage modifié. Notre gamme de produits comprend des pare-chocs, des kits carrosserie, des capots, des calandres, des ailes, des portes, des hayons, des phares et des feux arrière pour les grandes marques de véhicules, notamment Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz, et plus encore. Nous prenons en charge la coopération OEM, ODM et agence, avec une personnalisation mineure, une personnalisation à partir de plans, une inspection des produits finis et une traçabilité des matières premières. La note de notre boutique Alibaba est de 4,8/5 avec 92,9 % de livraison à temps.",

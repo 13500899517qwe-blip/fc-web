@@ -9,9 +9,9 @@ type Props = {
 }
 
 const sizes = {
-  nav: { width: 220, height: 55, iconSize: 'h-12 w-12' },
-  compact: { width: 180, height: 45, iconSize: 'h-10 w-10' },
-  footer: { width: 200, height: 50, iconSize: 'h-10 w-10' },
+  nav: { width: 540, height: 135, iconSize: 'h-28 w-28' },
+  compact: { width: 360, height: 90, iconSize: 'h-20 w-20' },
+  footer: { width: 480, height: 120, iconSize: 'h-24 w-24' },
 } as const
 
 export function BrandLogo({ variant = 'nav', className }: Props) {

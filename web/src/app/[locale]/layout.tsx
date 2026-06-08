@@ -10,6 +10,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter'
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton'
 import { InquiryBasketProvider } from '@/components/inquiry/InquiryBasketProvider'
 import { getCategoryTree } from '@/lib/catalog-queries'
+import { jsonLdOrganization } from '@/lib/json-ld'
 import '../globals.css'
 
 const geistSans = Geist({
@@ -43,8 +44,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   let categoryTree: Awaited<ReturnType<typeof getCategoryTree>> = []
   try {
     categoryTree = await getCategoryTree(locale as AppLocale)
-  } catch {
-    /* DB unavailable */
+  } catch (e) {
+    console.error('[Layout] categoryTree fetch failed:', e)
   }
 
   const messages = await getMessages()
@@ -52,7 +53,13 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} dir={dir} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#f5f5f5] text-zinc-900">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization(locale as AppLocale)) }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-surface-muted text-zinc-900">
         <NextIntlClientProvider messages={messages}>
           <InquiryBasketProvider>
             <TopBar />

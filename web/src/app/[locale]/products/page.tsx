@@ -35,8 +35,8 @@ export default async function ProductsPage({ params, searchParams }: Props) {
       page,
       limit: 24,
     })
-  } catch {
-    /* empty */
+  } catch (e) {
+    console.error('[ProductsPage] DB query failed:', e)
   }
 
   return (

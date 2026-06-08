@@ -11,6 +11,7 @@ import { Link } from '@/i18n/navigation'
 export default function ContactPage() {
   const t = useTranslations('contact')
   const ti = useTranslations('inquiry')
+  const tn = useTranslations('nav')
   const locale = useLocale()
   const [token, setToken] = useState<string | null>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -28,7 +29,8 @@ export default function ContactPage() {
       if (!res.ok) throw new Error('failed')
       setStatus('success')
       setForm({ name: '', email: '', company: '', phone: '', country: '', message: '' })
-    } catch {
+    } catch (e) {
+      console.error('[ContactPage] Inquiry submit failed:', e)
       setStatus('error')
     }
   }
@@ -51,10 +53,10 @@ export default function ContactPage() {
             {t('title')}
           </span>
           <h1 className="mt-3 text-2xl font-bold text-text-primary md:text-3xl">
-            Get in Touch With Us
+            {t('getInTouch')}
           </h1>
           <p className="mt-2 text-sm text-text-secondary">
-            Send us your requirements — we typically respond within {alibabaStore.metrics.responseTime}
+            {t('sendRequirements', { time: alibabaStore.metrics.responseTime })}
           </p>
         </div>
       </div>
@@ -91,7 +93,7 @@ export default function ContactPage() {
             <div className="rounded-xl border border-border-light bg-surface p-5 shadow-card">
               <h3 className="flex items-center gap-2 text-sm font-bold text-text-primary">
                 <ShieldCheck className="h-4 w-4 text-success" />
-                Why Choose Us
+                {t('whyChooseUs')}
               </h3>
               <ul className="mt-4 space-y-2">
                 {alibabaStore.highlights.slice(0, 4).map((h) => (
@@ -120,11 +122,11 @@ export default function ContactPage() {
             <div className="rounded-xl border border-border-light bg-surface p-5 shadow-card">
               <h3 className="flex items-center gap-2 text-sm font-bold text-text-primary">
                 <MessageSquare className="h-4 w-4 text-brand" />
-                Quick Links
+                {t('quickLinks')}
               </h3>
               <div className="mt-3 space-y-1.5 text-sm">
-                <Link href="/products" className="block text-text-secondary transition-colors hover:text-brand">Browse Products</Link>
-                <Link href="/faq" className="block text-text-secondary transition-colors hover:text-brand">FAQ</Link>
+                <Link href="/products" className="block text-text-secondary transition-colors hover:text-brand">{t('browseProducts')}</Link>
+                <Link href="/faq" className="block text-text-secondary transition-colors hover:text-brand">{tn('faq')}</Link>
                 <a href={company.alibabaStoreUrl} target="_blank" rel="noopener noreferrer" className="block text-text-secondary transition-colors hover:text-brand">
                   {company.brandShort} on Alibaba
                 </a>
@@ -216,7 +218,7 @@ export default function ContactPage() {
                   className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand-dark hover:shadow-xl active:scale-[0.97] disabled:opacity-50"
                 >
                   {status === 'loading' ? (
-                    <>Sending...</>
+                    <>{ti('sending')}</>
                   ) : (
                     <>{t('submit')} <Mail className="h-4 w-4" /></>
                   )}
@@ -256,7 +258,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="text-xl font-bold text-text-primary">{company.certifications.length}</p>
-              <p className="text-xs text-text-tertiary">Certifications</p>
+              <p className="text-xs text-text-tertiary">{t('title')}</p>
             </div>
           </div>
         </div>

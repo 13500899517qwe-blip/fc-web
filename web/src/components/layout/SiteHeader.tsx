@@ -26,6 +26,7 @@ export function SiteHeader({ categoryTree }: Props) {
   const mainNav = [
     { href: '/', label: t('home') },
     { href: '/about', label: t('about') },
+    { href: '/blog', label: t('blog') },
     { href: '/faq', label: t('faq') },
     { href: '/contact', label: t('contact') },
   ]
@@ -35,7 +36,9 @@ export function SiteHeader({ categoryTree }: Props) {
       <div className="mx-auto max-w-[1200px] px-4">
         <div className="flex items-center justify-between gap-4 py-3">
           <Link href="/" className="shrink-0">
-            <Image src="/logo.png" alt={company.brandName} width={140} height={48} className="h-11 w-auto" priority />
+            <div className="relative h-20 w-80">
+              <Image src="/logo.svg" alt={company.brandName} fill className="object-contain object-left" priority />
+            </div>
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-6 lg:flex">

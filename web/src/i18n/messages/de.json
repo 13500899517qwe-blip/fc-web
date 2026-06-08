@@ -11,6 +11,7 @@
     "home": "Startseite",
     "products": "Produkte",
     "about": "Über uns",
+    "blog": "Blog",
     "faq": "FAQ",
     "contact": "Kontakt",
     "inquiry": "Anfragekorb",
@@ -197,6 +198,12 @@
     "desc5": "4,8/5 Shop-Bewertung · 92,9 % pünktliche Lieferung · #7 schnellste Reaktionszeit bei Kfz-Türen.",
     "title6": "Durchgängige Qualitätskontrolle",
     "desc6": "Rückverfolgbarkeit der Rohstoffe, prozessbegleitende Prüfung, Endprodukttests mit 9 Prüfgeräten."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Brancheneinblicke, Produktleitfäden und Beschaffungstipps für Autokarosserieteile und modifizierte Beleuchtung.",
+    "readMore": "Mehr lesen",
+    "by": "Von Fengcheng Autoteile"
   },
   "factory": {
     "companyIntro": "Changzhou Fengcheng Import and Export Co., Ltd. ist ein kundenspezifischer Hersteller von Kfz-Karosserieteilen für den Ersatzteilmarkt und modifizierten Leuchten. Unser Produktsortiment umfasst Stoßfänger, Bodykits, Motorhauben, Kühlergrills, Kotflügel, Türen, Heckklappen, Scheinwerfer und Rückleuchten für große Fahrzeugmarken wie Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz und mehr. Wir unterstützen OEM, ODM und Agenturkooperationen mit geringfügiger Individualisierung, zeichnungsbasierter Individualisierung, Endproduktprüfung und Rückverfolgbarkeit der Rohstoffe. Die Bewertung unseres Alibaba-Shops beträgt 4,8/5 bei 92,9 % pünktlicher Lieferung.",

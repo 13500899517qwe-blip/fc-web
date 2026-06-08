@@ -12,6 +12,7 @@ import { HeroSection } from '@/components/home/HeroSection'
 import { WhyChooseUs } from '@/components/home/WhyChooseUs'
 import { FactoryShowcase } from '@/components/home/FactoryShowcase'
 import { AlibabaProductGroups } from '@/components/home/AlibabaProductGroups'
+import { blogPosts } from '@/data/blog-posts'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -45,8 +46,8 @@ export default async function HomePage({ params }: Props) {
         }
       })
     }
-  } catch {
-    /* DB not ready */
+  } catch (e) {
+    console.error('[HomePage] DB query failed:', e)
   }
 
   return (
@@ -102,6 +103,52 @@ export default async function HomePage({ params }: Props) {
 
       {/* 5. Factory & Company showcase */}
       <FactoryShowcase />
+
+      {/* 5.5 Blog preview */}
+      <section className="border-t border-border-light bg-surface py-16">
+        <div className="container-main">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <div>
+              <span className="inline-block rounded-full bg-brand/10 px-3 py-0.5 text-xs font-semibold uppercase tracking-wider text-brand">
+                Blog
+              </span>
+              <h2 className="mt-2 text-xl font-bold text-text-primary md:text-2xl">
+                Industry Insights & Guides
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="shrink-0 text-sm font-semibold text-brand transition-colors hover:text-brand-dark"
+            >
+              View all &rarr;
+            </Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group rounded-xl border border-border-light bg-surface-muted p-5 transition-all hover:shadow-card-hover"
+              >
+                <div className="mb-3 flex flex-wrap gap-1.5">
+                  {post.tags.slice(0, 2).map((tag) => (
+                    <span key={tag} className="rounded-full bg-surface-subtle px-2 py-0.5 text-[10px] font-semibold text-text-tertiary">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-sm font-bold leading-snug text-text-primary transition-colors group-hover:text-brand line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-text-secondary line-clamp-2">
+                  {post.excerpt}
+                </p>
+                <p className="mt-3 text-[11px] text-text-muted">{post.date}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* 6. Final CTA */}
       <section className="bg-surface-dark py-16">

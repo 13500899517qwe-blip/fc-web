@@ -42,6 +42,7 @@
   "nav": {
     "home": "Home",
     "products": "Products",
+    "blog": "Blog",
     "about": "About",
     "faq": "FAQ",
     "contact": "Contact",
@@ -149,7 +150,8 @@
     "success": "Thank you. We will contact you shortly.",
     "error": "Submission failed. Please try again.",
     "sidebarTitle": "B2B wholesale inquiry",
-    "sidebarBody": "No checkout — we quote by email. Add multiple SKUs and describe OEM/ODM needs in your message."
+    "sidebarBody": "No checkout — we quote by email. Add multiple SKUs and describe OEM/ODM needs in your message.",
+    "sending": "Sending..."
   },
   "contact": {
     "title": "Contact us",
@@ -160,7 +162,14 @@
     "response": "Typical response within {time}",
     "rating": "Alibaba store rating {rating}",
     "b2bNote": "B2B wholesale only",
-    "b2bNoteBody": "No online checkout. Add SKUs to the inquiry basket or describe OEM/ODM needs — we quote by email."
+    "b2bNoteBody": "No online checkout. Add SKUs to the inquiry basket or describe OEM/ODM needs — we quote by email.",
+    "getInTouch": "Get in Touch With Us",
+    "sendRequirements": "Send us your requirements — we typically respond within {time}",
+    "whyChooseUs": "Why Choose Us",
+    "quickLinks": "Quick Links",
+    "browseProducts": "Browse Products",
+    "yourDetails": "Your Details",
+    "tellUsAbout": "Tell us about the parts you need — include vehicle model, year, and quantity..."
   },
   "footer": {
     "productCategory": "Product Category",
@@ -224,6 +233,15 @@
     "desc5": "4.8/5 store rating · 92.9% on-time delivery · #7 fastest response in Car Doors.",
     "title6": "End-to-End QC",
     "desc6": "Raw material traceability, in-process inspection, finished product testing with 9 instruments."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Industry insights, product guides, and sourcing tips for auto body parts and modified lighting.",
+    "readMore": "Read More",
+    "by": "By Fengcheng Auto Parts",
+    "relatedTitle": "Related Articles",
+    "backToBlog": "Back to Blog",
+    "recentPosts": "Recent Posts"
   },
   "factory": {
     "companyIntro": "Changzhou Fengcheng Import and Export Co., Ltd. is a custom manufacturer of aftermarket auto body parts and modified lighting. Our product range covers bumpers, body kits, hoods, grilles, fenders, doors, tailgates, headlights, and tail lights for major vehicle brands including Toyota, Jeep, Hyundai, Nissan, Isuzu, Mercedes-Benz, and more. We support OEM, ODM, and agency cooperation, with minor customization, drawing-based customization, finished product inspection, and raw material traceability. Our Alibaba store rating is 4.8/5 with 92.9% on-time delivery.",
